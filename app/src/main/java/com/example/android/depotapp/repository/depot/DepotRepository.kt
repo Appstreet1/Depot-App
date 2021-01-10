@@ -1,7 +1,7 @@
-package com.example.android.depot.repository.depot
+package com.example.android.depotapp.repository.depot
 
-import com.example.android.depot.db.depot.DepotDao
-import com.example.android.depot.db.depot.DepotDatabaseItem
+import com.example.android.depotapp.database.depot.DepotDao
+import com.example.android.depotapp.database.depot.DepotDatabaseItem
 
 class DepotRepository(private val dao : DepotDao) {
 
