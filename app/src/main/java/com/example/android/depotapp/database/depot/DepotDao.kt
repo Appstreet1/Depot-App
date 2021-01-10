@@ -7,7 +7,7 @@ import com.example.android.depotapp.database.depot.DepotWithPurchases
 @Dao
 interface DepotDao {
     @Query("SELECT * FROM depots")
-    fun getDepots(): LiveData<List<DepotDatabaseItem>>
+    fun getDepots(): List<DepotDatabaseItem>
 
     @Transaction
     @Query("SELECT * FROM depots")

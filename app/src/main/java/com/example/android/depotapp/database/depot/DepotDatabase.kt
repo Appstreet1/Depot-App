@@ -11,7 +11,7 @@ import com.example.android.depotapp.database.share.ShareDatabaseItem
 
 @Database(
     entities = [DepotDatabaseItem::class, ShareDatabaseItem::class, PurchaseDatabaseItem::class],
-    version = 1
+    version = 1, exportSchema = false
 )
 
 abstract class DepotDatabase : RoomDatabase() {

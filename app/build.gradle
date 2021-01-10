@@ -33,6 +33,7 @@ android {
     }
 
 
+
 }
 
 dependencies {
@@ -47,6 +48,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     def room_version = "2.2.6"
+    def coroutinesVersion = '1.2.1'
 
 
     //Room
@@ -55,5 +57,15 @@ dependencies {
 
     implementation 'com.android.support:multidex:1.0.3'
 
+    // Koin for the dependencies injections
+    implementation 'org.koin:koin-android:2.2.0'
+    implementation 'org.koin:koin-android-viewmodel:2.2.0'
+    implementation 'org.koin:koin-androidx-scope:2.0.1'
+
+    //Coroutines Dependencies
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
 
 }
