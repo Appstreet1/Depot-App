@@ -4,30 +4,42 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.android.depotapp.R
 import com.example.android.depotapp.database.DepotDatabase
 import com.example.android.depotapp.database.entities.DepotDatabaseItem
+import kotlinx.android.synthetic.main.activity_select_depot.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class SelectDepotActivity : AppCompatActivity() {
 
     private val selectDepotViewModel by viewModel<SelectDepotViewModel>()
+    private lateinit var listAdapter: DepotListAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_depot)
 
-        val depot = DepotDatabaseItem(2,"Title", 2000.0, 10.2)
+        initRecyclerView()
+        observeDepots()
+    }
 
-        selectDepotViewModel.insertDepot(depot)
+    private fun initRecyclerView(){
+        listAdapter = DepotListAdapter()
 
-        selectDepotViewModel.getDepots().observe(this, Observer { depots->
-            if(depots.isNotEmpty()){
-                Log.i("TEST", depots.toString())
-            }else
-            {
-                Log.i("TEST", "empty")
-            }
+        depot_recyclerView.apply {
+            layoutManager = GridLayoutManager(this.context, 2)
+            itemAnimator = DefaultItemAnimator()
+            adapter = listAdapter
+        }
+    }
+
+    private fun observeDepots() {
+        selectDepotViewModel.getDepots().observe(this, Observer { depots ->
+            listAdapter.setData(depots)
+            Log.i("TEST", depots.toString())
         })
     }
 }

@@ -27,3 +27,4 @@ fun List<DepotDatabaseItem>.parseToDomainModel(): List<Depot> {
     }
 }
 
+
