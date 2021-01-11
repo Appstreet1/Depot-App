@@ -9,6 +9,8 @@ import kotlinx.coroutines.launch
 
 class SelectDepotViewModel(private val repository: DepotRepository) : ViewModel() {
 
-   fun getDepots() = repository.allDepots.distinctUntilChanged()
+    fun getDepots() = repository.allDepots.distinctUntilChanged()
 
+    fun insertDepot(depot: DepotDatabaseItem) =
+        viewModelScope.launch { repository.addDepot(depot) }
 }
