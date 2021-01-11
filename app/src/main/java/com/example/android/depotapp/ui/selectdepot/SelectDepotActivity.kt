@@ -16,7 +16,15 @@ class SelectDepotActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_depot)
 
-
         //add and retrieve data
+
+        selectDepotViewModel.getDepots().observe(this, Observer { depots->
+            if(depots.isNotEmpty()){
+                Log.i("TEST", depots.toString())
+            }else
+            {
+                Log.i("TEST", "empty")
+            }
+        })
     }
 }

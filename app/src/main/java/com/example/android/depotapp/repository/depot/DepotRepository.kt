@@ -7,10 +7,7 @@ import kotlinx.coroutines.*
 
 class DepotRepository(private val dao: DepotDao) {
 
-    suspend fun getDepots(): LiveData<List<DepotDatabaseItem>> {
-
-        return dao.getAllDepots()
-    }
+    val allDepots: LiveData<List<DepotDatabaseItem>> = dao.getAllDepots()
 
     suspend fun addDepot(depot: DepotDatabaseItem) {
         withContext(Dispatchers.IO) {
