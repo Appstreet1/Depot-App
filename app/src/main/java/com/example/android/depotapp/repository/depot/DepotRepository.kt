@@ -2,37 +2,38 @@ package com.example.android.depotapp.repository.depot
 
 import com.example.android.depotapp.database.dao.DepotDao
 import com.example.android.depotapp.database.entities.DepotDatabaseItem
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO_PARALLELISM_PROPERTY_NAME
-import kotlinx.coroutines.launch
+import com.example.android.depotapp.utils.DataResult
+import kotlinx.coroutines.*
 
-class DepotRepository(private val dao : DepotDao) {
+class DepotRepository(private val dao: DepotDao) {
 
-//    val depots = dao.getDepots()
-
-    //TODO: add Error Handling Callback
-    suspend fun getDepots(){
-        CoroutineScope(Dispatchers.IO).launch {
+    suspend fun getDepots() {
+        withContext(Dispatchers.IO) {
             dao.getDepots()
         }
     }
 
-    suspend fun addDepot(depot: DepotDatabaseItem){
-        CoroutineScope(Dispatchers.IO).launch {
+    suspend fun addDepot(depot: DepotDatabaseItem) {
+        withContext(Dispatchers.IO) {
             dao.addDepot(depot)
         }
     }
 
-    suspend fun updateDepot(depot: DepotDatabaseItem){
-        dao.updateDepot(depot)
+    suspend fun updateDepot(depot: DepotDatabaseItem) {
+        withContext(Dispatchers.IO) {
+            dao.updateDepot(depot)
+        }
     }
 
-    suspend fun deleteDepot(depot: DepotDatabaseItem){
-        dao.deleteDepot(depot)
+    suspend fun deleteDepot(depot: DepotDatabaseItem) {
+        withContext(Dispatchers.IO) {
+            dao.deleteDepot(depot)
+        }
     }
 
-    suspend fun deleteAllDepots(){
-        dao.deleteAllDepots()
+    suspend fun deleteAllDepots() {
+        withContext(Dispatchers.IO) {
+            dao.deleteAllDepots()
+        }
     }
 }
