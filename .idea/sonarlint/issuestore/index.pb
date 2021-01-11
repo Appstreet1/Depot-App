@@ -61,3 +61,6 @@ z
 Japp/src/main/java/com/example/android/depotapp/modules/repositoryModule.kt,b\a\ba8086c51bf3200610d27bf7193ea8c7d122dbc6
 ~
 Napp/src/main/java/com/example/android/depotapp/database/depot/DepotDatabase.kt,4\0\40676e6f5fd42fe17f6a9c0d156066a529cef0dc
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
