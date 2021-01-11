@@ -9,13 +9,12 @@ import java.util.*
 
 @Entity(tableName = "depots")
 data class DepotDatabaseItem constructor(
+    @PrimaryKey
+    var id: Long,
     var title: String,
     var value: Double,
     var valueIncrease: Double
-){
-    @PrimaryKey(autoGenerate = true)
-    var id: Long = 0
-}
+)
 
 fun List<DepotDatabaseItem>.parseToDomainModel(): List<Depot> {
     return map {
