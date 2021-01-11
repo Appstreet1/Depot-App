@@ -21,7 +21,7 @@ import com.example.android.depotapp.database.entities.ShareDatabaseItem
 @TypeConverters(DateTypeConverter::class)
 abstract class DepotDatabase : RoomDatabase() {
     abstract val depotDao: DepotDao
-    abstract val shareDao: ShareDao
+//    abstract val shareDao: ShareDao
     abstract val purchaseDao: PurchaseDao
 
     companion object {

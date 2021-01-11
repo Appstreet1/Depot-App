@@ -1,6 +1,7 @@
 package com.example.android.depotapp.ui.selectdepot
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.android.depotapp.R
 import com.example.android.depotapp.database.DepotDatabase
@@ -14,10 +15,8 @@ class SelectDepotActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_depot)
 
-      DepotDatabase.getDatabase(this)
-//
-//        db.depotDao.getDepots()
 
 //        selectDepotViewModel.test_addDepot()
+        selectDepotViewModel.test_getDepots()
     }
 }

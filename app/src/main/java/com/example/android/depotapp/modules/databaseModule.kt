@@ -9,19 +9,6 @@ import org.koin.dsl.module
 
 val databaseModule = module {
 
-    fun provideDatabase(application: Application): DepotDatabase {
-        return Room.databaseBuilder(application, DepotDatabase::class.java, "depots")
-            .fallbackToDestructiveMigration()
-            .build()
-    }
-
-    fun provideDepotDao(database: DepotDatabase): DepotDao {
-        return  database.depotDao
-    }
-
-//    single { provideDatabase(androidApplication()) }
-//    single { provideDepotDao(get()) }
-
     single { DepotDatabase.getDatabase(androidApplication()) }
-//    single { DepotDatabase.getDatabase(androidApplication()).depotDao }
+    single { DepotDatabase.getDatabase(androidApplication()).depotDao }
 }

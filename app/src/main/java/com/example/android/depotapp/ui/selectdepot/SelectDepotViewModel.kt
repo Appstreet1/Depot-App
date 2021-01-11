@@ -10,13 +10,6 @@ import kotlinx.coroutines.launch
 
 class SelectDepotViewModel(private val repository: DepotRepository) : ViewModel() {
 
-    init {
-        test_addDepot()
-        test_getDepots()
-    }
-
-    fun db(){
-    }
 
      fun test_addDepot(){
 
@@ -34,8 +27,8 @@ class SelectDepotViewModel(private val repository: DepotRepository) : ViewModel(
      fun test_getDepots(){
 
         viewModelScope.launch {
-           val list = repository.getDepots()
-            Log.i("TEST", list.toString())
+           val list  = repository.getDepots()
+            Log.i("TEST", "list.")
         }
     }
 
