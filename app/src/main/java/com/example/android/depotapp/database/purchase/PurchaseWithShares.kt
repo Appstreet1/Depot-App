@@ -4,6 +4,7 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.Junction
 import androidx.room.Relation
+import com.example.android.depotapp.database.share.ShareDatabaseItem
 import com.example.android.depotapp.model.Share
 
 @Entity(primaryKeys = ["purchaseId", "shareId"])
@@ -19,5 +20,5 @@ data class PurchaseWithShares(
         entityColumn = "shareId",
         associateBy = Junction(PurchaseSharesCrossRef::class)
     )
-    val shares: List<Share>
+    val shares: List<ShareDatabaseItem>
 )

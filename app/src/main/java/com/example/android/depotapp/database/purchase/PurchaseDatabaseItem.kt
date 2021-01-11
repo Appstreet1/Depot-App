@@ -7,15 +7,15 @@ import java.util.*
 
 @Entity(tableName = "purchases")
 data class PurchaseDatabaseItem constructor(
-    val titleOfShare: String,
-    val amountOfShares: Double,
-    val totalValue: Double,
-    val dateOfPurchase : Date,
-    val valueIncrease: Double,
-    val depotId : Long
+    var titleOfShare: String,
+    var amountOfShares: Double,
+    var totalValue: Double,
+    var dateOfPurchase : Date,
+    var valueIncrease: Double,
+    var depotId : Long
 ){
     @PrimaryKey(autoGenerate = true)
-    val purchaseId : Long = 0
+    var purchaseId : Long = 0
 }
 
 fun List<PurchaseDatabaseItem>.parseToDomainModel(): List<Unit> {

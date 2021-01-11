@@ -1,7 +1,7 @@
 package com.example.android.depotapp.model
 
 class Share(
-    val shareId : String,
+    val shareId : Long,
     val title: String,
     val symbol : String,
     val price: Double,
