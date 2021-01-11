@@ -1,7 +1,7 @@
 package com.example.android.depotapp.repository.purchases
 
-import com.example.android.depotapp.database.purchase.PurchaseDao
-import com.example.android.depotapp.database.purchase.PurchaseDatabaseItem
+import com.example.android.depotapp.database.dao.PurchaseDao
+import com.example.android.depotapp.database.entities.PurchaseDatabaseItem
 
 
 class PurchaseRepository(private val dao : PurchaseDao) {

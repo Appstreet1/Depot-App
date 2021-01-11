@@ -1,4 +1,4 @@
-package com.example.android.depotapp.database.depot
+package com.example.android.depotapp.database.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -9,21 +9,18 @@ import java.util.*
 
 @Entity(tableName = "depots")
 data class DepotDatabaseItem constructor(
-    val title: String,
-    val purchases: List<Purchase>,
-    val value: Double,
-    val valueIncrease: Double
-){
-    @PrimaryKey(autoGenerate = true)
-    val id: Long = 0
-}
+    @PrimaryKey
+    var id: Long,
+    var title: String,
+    var value: Double,
+    var valueIncrease: Double
+)
 
 fun List<DepotDatabaseItem>.parseToDomainModel(): List<Depot> {
     return map {
         Depot(
             id = it.id,
             title = it.title,
-            purchases = it.purchases,
             value = it.value,
             valueIncrease = it.valueIncrease
         )

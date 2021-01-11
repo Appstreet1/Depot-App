@@ -1,7 +1,7 @@
 package com.example.android.depotapp.repository.share
 
-import com.example.android.depotapp.database.share.ShareDao
-import com.example.android.depotapp.database.share.ShareDatabaseItem
+import com.example.android.depotapp.database.dao.ShareDao
+import com.example.android.depotapp.database.entities.ShareDatabaseItem
 
 class ShareRepository(private val dao: ShareDao) {
 

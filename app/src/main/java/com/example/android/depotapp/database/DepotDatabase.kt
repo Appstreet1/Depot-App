@@ -1,22 +1,27 @@
-package com.example.android.depotapp.database.depot
+package com.example.android.depotapp.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.android.depotapp.database.purchase.PurchaseDao
-import com.example.android.depotapp.database.purchase.PurchaseDatabaseItem
-import com.example.android.depotapp.database.share.ShareDao
-import com.example.android.depotapp.database.share.ShareDatabaseItem
+import androidx.room.TypeConverters
+import com.example.android.depotapp.database.converter.DateTypeConverter
+import com.example.android.depotapp.database.dao.DepotDao
+import com.example.android.depotapp.database.dao.PurchaseDao
+import com.example.android.depotapp.database.dao.ShareDao
+import com.example.android.depotapp.database.entities.DepotDatabaseItem
+import com.example.android.depotapp.database.entities.PurchaseDatabaseItem
+import com.example.android.depotapp.database.entities.ShareDatabaseItem
 
 @Database(
     entities = [DepotDatabaseItem::class, ShareDatabaseItem::class, PurchaseDatabaseItem::class],
     version = 1, exportSchema = false
 )
 
+@TypeConverters(DateTypeConverter::class)
 abstract class DepotDatabase : RoomDatabase() {
     abstract val depotDao: DepotDao
-    abstract val shareDao: ShareDao
+//    abstract val shareDao: ShareDao
     abstract val purchaseDao: PurchaseDao
 
     companion object {
@@ -24,7 +29,7 @@ abstract class DepotDatabase : RoomDatabase() {
 
         fun getDatabase(context: Context): DepotDatabase {
             synchronized(DepotDatabase::class.java) {
-                if (!::INSTANCE.isInitialized) {
+                if (!Companion::INSTANCE.isInitialized) {
                     INSTANCE = Room.databaseBuilder(
                         context.applicationContext,
                         DepotDatabase::class.java,
