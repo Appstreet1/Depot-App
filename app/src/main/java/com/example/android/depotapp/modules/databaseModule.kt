@@ -2,8 +2,8 @@ package com.example.android.depotapp.modules
 
 import android.app.Application
 import androidx.room.Room
-import com.example.android.depotapp.database.depot.DepotDao
-import com.example.android.depotapp.database.depot.DepotDatabase
+import com.example.android.depotapp.database.dao.DepotDao
+import com.example.android.depotapp.database.DepotDatabase
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 

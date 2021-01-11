@@ -3,8 +3,7 @@ package com.example.android.depotapp.ui.selectdepot
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.android.depotapp.database.depot.DepotDatabase
-import com.example.android.depotapp.database.depot.DepotDatabaseItem
+import com.example.android.depotapp.database.entities.DepotDatabaseItem
 import com.example.android.depotapp.model.Purchase
 import com.example.android.depotapp.repository.depot.DepotRepository
 import kotlinx.coroutines.launch

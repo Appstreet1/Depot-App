@@ -1,4 +1,4 @@
-package com.example.android.depotapp.database.purchase
+package com.example.android.depotapp.database.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -12,7 +12,8 @@ data class PurchaseDatabaseItem constructor(
     var totalValue: Double,
     var dateOfPurchase : Date,
     var valueIncrease: Double,
-    var depotId : Long
+    var depotId : Long,
+    var shareId: Long
 ){
     @PrimaryKey(autoGenerate = true)
     var purchaseId : Long = 0

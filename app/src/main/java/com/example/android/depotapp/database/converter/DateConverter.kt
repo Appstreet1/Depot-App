@@ -3,14 +3,14 @@ package com.example.android.depotapp.database.converter
 import androidx.room.TypeConverter
 import java.util.*
 
-object DateConverter {
-    @TypeConverter
-    fun toDate(dateLong: Long?): Date? {
-        return dateLong?.let { Date(it) }
-    }
+object DateTypeConverter {
 
     @TypeConverter
-    fun fromDate(date: Date?): Long? {
-        return date?.time
-    }
+    @JvmStatic
+    fun toDate(timestamp: Long?) = timestamp?.let { Date(timestamp) }
+
+    @TypeConverter
+    @JvmStatic
+    fun toTimestamp(date: Date?) = date?.time
+
 }

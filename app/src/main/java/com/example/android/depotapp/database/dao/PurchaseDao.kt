@@ -1,8 +1,10 @@
-package com.example.android.depotapp.database.purchase
+package com.example.android.depotapp.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.android.depotapp.database.share.ShareDatabaseItem
+import com.example.android.depotapp.database.entities.PurchaseDatabaseItem
+import com.example.android.depotapp.database.entities.PurchaseWithShares
+import com.example.android.depotapp.database.entities.ShareDatabaseItem
 
 @Dao
 interface PurchaseDao {

@@ -1,4 +1,4 @@
-package com.example.android.depotapp.database.depot
+package com.example.android.depotapp.database.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
