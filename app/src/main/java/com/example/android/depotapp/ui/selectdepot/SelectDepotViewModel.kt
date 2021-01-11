@@ -1,6 +1,8 @@
 package com.example.android.depotapp.ui.selectdepot
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.depotapp.database.entities.DepotDatabaseItem
@@ -10,26 +12,9 @@ import kotlinx.coroutines.launch
 
 class SelectDepotViewModel(private val repository: DepotRepository) : ViewModel() {
 
+    val depots: LiveData<List<DepotDatabaseItem>>
+        get() = _depots
 
-     fun test_addDepot(){
-
-        val list = mutableListOf<Purchase>()
-        val purchase = Purchase(52, "titleShare", 2.0,1.0, null, 0.0, null)
-        list.add(purchase)
-        val depot = DepotDatabaseItem("testOne", 2.0, 10.0)
-
-        viewModelScope.launch {
-            repository.addDepot(depot)
-            Log.i("TEST", "add")
-        }
-    }
-
-     fun test_getDepots(){
-
-        viewModelScope.launch {
-           val list  = repository.getDepots()
-            Log.i("TEST", "list.")
-        }
-    }
+    private val _depots = MutableLiveData<List<DepotDatabaseItem>>()
 
 }

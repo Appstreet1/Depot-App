@@ -1,16 +1,15 @@
 package com.example.android.depotapp.repository.depot
 
+import androidx.lifecycle.LiveData
 import com.example.android.depotapp.database.dao.DepotDao
 import com.example.android.depotapp.database.entities.DepotDatabaseItem
-import com.example.android.depotapp.utils.DataResult
 import kotlinx.coroutines.*
 
 class DepotRepository(private val dao: DepotDao) {
 
-    suspend fun getDepots() {
-        withContext(Dispatchers.IO) {
-            dao.getDepots()
-        }
+    suspend fun getDepots(): LiveData<List<DepotDatabaseItem>> {
+
+        return dao.getAllDepots()
     }
 
     suspend fun addDepot(depot: DepotDatabaseItem) {

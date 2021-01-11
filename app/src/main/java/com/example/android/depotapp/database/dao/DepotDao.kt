@@ -1,5 +1,6 @@
 package com.example.android.depotapp.database.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.android.depotapp.database.entities.DepotWithPurchases
 import com.example.android.depotapp.database.entities.DepotDatabaseItem
@@ -7,24 +8,24 @@ import com.example.android.depotapp.database.entities.DepotDatabaseItem
 @Dao
 interface DepotDao {
     @Query("SELECT * FROM depots")
-    fun getDepots(): List<DepotDatabaseItem>
+    fun getAllDepots(): LiveData<List<DepotDatabaseItem>>
 
     @Transaction
     @Query("SELECT * FROM depots")
-    fun getDepotsWithPurchases(): List<DepotWithPurchases>
+    suspend fun getDepotsWithPurchases(): List<DepotWithPurchases>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg depots: DepotDatabaseItem)
+    suspend fun insertAll(vararg depots: DepotDatabaseItem)
 
     @Update
-    fun updateDepot(depot: DepotDatabaseItem)
+    suspend fun updateDepot(depot: DepotDatabaseItem)
 
     @Insert
-    fun addDepot(depot: DepotDatabaseItem)
+    suspend fun addDepot(depot: DepotDatabaseItem)
 
     @Delete
-    fun deleteDepot(depot: DepotDatabaseItem)
+    suspend fun deleteDepot(depot: DepotDatabaseItem)
 
     @Query("DELETE FROM depots")
-    fun deleteAllDepots()
+    suspend fun deleteAllDepots()
 }

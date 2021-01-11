@@ -3,6 +3,7 @@ package com.example.android.depotapp.ui.selectdepot
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.example.android.depotapp.R
 import com.example.android.depotapp.database.DepotDatabase
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -16,7 +17,6 @@ class SelectDepotActivity : AppCompatActivity() {
         setContentView(R.layout.activity_select_depot)
 
 
-//        selectDepotViewModel.test_addDepot()
-        selectDepotViewModel.test_getDepots()
+        //add and retrieve data
     }
 }
