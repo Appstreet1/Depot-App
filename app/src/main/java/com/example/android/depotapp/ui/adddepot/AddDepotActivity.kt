@@ -1,12 +1,39 @@
 package com.example.android.depotapp.ui.adddepot
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.android.depotapp.R
+import com.example.android.depotapp.model.Depot
+import com.example.android.depotapp.ui.depotoverview.DepotOverviewActivity
+import com.example.android.depotapp.ui.selectdepot.SelectDepotActivity
+import kotlinx.android.synthetic.main.activity_add_depot.*
 
 class AddDepotActivity : AppCompatActivity() {
+
+    companion object {
+        fun start(context: Context) {
+            val intent = Intent(context, AddDepotActivity::class.java)
+
+            context.startActivity(intent)
+        }
+    }
+
+    //TODO: implement insert function, add it here (own Viewmodel), and SelectDepotActivity observe the changes
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_depot)
+
+        initOnClick()
+    }
+
+    private fun initOnClick() {
+
+        depot_save_button.setOnClickListener {
+            SelectDepotActivity.start(this)
+            finish()
+        }
     }
 }

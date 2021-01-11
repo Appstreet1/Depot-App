@@ -1,5 +1,7 @@
 package com.example.android.depotapp.ui.selectdepot
 
+import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.depotapp.R
 import com.example.android.depotapp.model.Depot
+import com.example.android.depotapp.ui.depotoverview.DepotOverviewActivity
 import kotlinx.android.synthetic.main.depot_list_item.view.*
 
 class DepotListAdapter(private val depots: ArrayList<Depot> = ArrayList()
@@ -32,8 +35,7 @@ class DepotListAdapter(private val depots: ArrayList<Depot> = ArrayList()
         fun update(depot: Depot) = with(itemView) {
 
             depot_list_item_title.text = depot.title
-
-            depot_list_item_layout.setOnClickListener { Log.i("TEST", "click") }
+            depot_list_item_layout.setOnClickListener { DepotOverviewActivity.start(itemView.context, depot) }
         }
     }
 
@@ -43,4 +45,5 @@ class DepotListAdapter(private val depots: ArrayList<Depot> = ArrayList()
         depots.addAll(list)
         notifyDataSetChanged()
     }
+
 }
