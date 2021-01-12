@@ -31,8 +31,6 @@ P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 p
 @app/src/main/java/com/example/android/depotapp/model/Purchase.kt,8\4\849f73fbfa99b44b084900f089efd768b6c818aa
-n
->app/src/main/java/com/example/android/depotapp/MainActivity.kt,9\d\9d0463ece3b26d6fabb4caf48175f3ef23fca58c
 x
 Happ/src/main/java/com/example/android/depotapp/modules/databaseModule.kt,9\7\97fd6ce889b9572c1fd64dc66f0a01bd66b7eb03
 Ö
@@ -52,3 +50,15 @@ l
 Uapp/src/main/java/com/example/android/depotapp/database/entities/DepotDatabaseItem.kt,4\c\4c8da6a72b31d24538b884970b536071346c2e15
 Å
 Qapp/src/main/java/com/example/android/depotapp/ui/selectdepot/DepotListAdapter.kt,2\c\2c6e00dc6f6d2c2d444b74c36353aaeff5535e0b
+r
+Bapp/src/main/java/com/example/android/depotapp/DepotApplication.kt,7\6\760fc4042908607ee678afe30eeaaa05d51d3913
+w
+Gapp/src/main/java/com/example/android/depotapp/database/dao/DepotDao.kt,1\2\1241724591f8fa95be1719165bfeb94711fc0ce1
+
+Oapp/src/main/java/com/example/android/depotapp/ui/adddepot/AddDepotViewModel.kt,c\5\c5856c56a06636ea645c0b4c16ffdf490179488e
+Ö
+Uapp/src/main/java/com/example/android/depotapp/database/entities/ShareDatabaseItem.kt,3\2\3234339fdb83f724b159c89d831609d6cc7a3345
+y
+Iapp/src/main/java/com/example/android/depotapp/network/StockApiService.kt,3\7\379a697342112bc8029d111a449a0e85d8e92dd9
+r
+Bapp/src/main/java/com/example/android/depotapp/network/ShareDTO.kt,1\0\10e8e96f8a19fbcdfc8c360feeb3c01d29d9e34e
