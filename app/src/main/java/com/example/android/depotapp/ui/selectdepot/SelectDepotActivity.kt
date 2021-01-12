@@ -61,9 +61,8 @@ class SelectDepotActivity : AppCompatActivity() {
     }
 
     private fun observeDepots() {
-        selectDepotViewModel.getDepots().observe(this, Observer { depots ->
+        selectDepotViewModel.getDepots().observe(this, { depots ->
             listAdapter.setData(depots)
-            Log.i("TEST", depots.toString())
         })
     }
 
@@ -77,6 +76,6 @@ class SelectDepotActivity : AppCompatActivity() {
         this.doubleBackToExitPressedOnce = true
         Toast.makeText(this, "Please click again to exit", Toast.LENGTH_SHORT).show()
 
-        Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 1500)
+        Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 1500)
     }
 }

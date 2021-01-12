@@ -6,6 +6,7 @@ import com.example.android.depotapp.database.dao.DepotDao
 import com.example.android.depotapp.database.entities.DepotDatabaseItem
 import com.example.android.depotapp.database.entities.parseToDomainModel
 import com.example.android.depotapp.model.Depot
+import com.example.android.depotapp.model.parseToDatabaseModel
 import kotlinx.coroutines.*
 
 class DepotRepository(private val dao: DepotDao) {
@@ -14,9 +15,13 @@ class DepotRepository(private val dao: DepotDao) {
         it.parseToDomainModel()
     }
 
-    suspend fun addDepot(depot: DepotDatabaseItem) {
+    suspend fun addDepot(depots: Depot) {
         withContext(Dispatchers.IO) {
-            dao.addDepot(depot)
+
+            val depotsToAdd = mutableListOf<Depot>()
+            depotsToAdd.add(depots)
+
+            dao.addDepot(depotsToAdd.parseToDatabaseModel())
         }
     }
 

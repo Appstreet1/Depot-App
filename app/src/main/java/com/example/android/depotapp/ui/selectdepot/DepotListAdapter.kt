@@ -41,9 +41,8 @@ class DepotListAdapter(private val depots: ArrayList<Depot> = ArrayList()
 
     //TODO:implement Diffutilcallback
     fun setData(list: List<Depot>){
-        depots.clear()
-        depots.addAll(list)
-        notifyDataSetChanged()
+            depots.clear()
+            depots.addAll(list)
+            notifyDataSetChanged()
     }
-
 }

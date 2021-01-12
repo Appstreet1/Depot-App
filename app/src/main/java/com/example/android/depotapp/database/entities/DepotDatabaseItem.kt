@@ -9,8 +9,8 @@ import java.util.*
 
 @Entity(tableName = "depots")
 data class DepotDatabaseItem constructor(
-    @PrimaryKey
-    var id: Long,
+    @PrimaryKey(autoGenerate = true)
+    val id: Long,
     var title: String,
     var value: Double,
     var valueIncrease: Double
@@ -26,5 +26,6 @@ fun List<DepotDatabaseItem>.parseToDomainModel(): List<Depot> {
         )
     }
 }
+
 
 

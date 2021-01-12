@@ -11,6 +11,5 @@ class SelectDepotViewModel(private val repository: DepotRepository) : ViewModel(
 
     fun getDepots() = repository.allDepots
 
-    fun insertDepot(depot: DepotDatabaseItem) =
-        viewModelScope.launch { repository.addDepot(depot) }
+
 }
