@@ -1,18 +1,8 @@
 
 Y
 )app/src/main/res/layout/activity_main.xml,7\6\76b07e40f24cce093536731477540f12e7da3cb6
-ƒ
-Sapp/src/main/java/com/example/android/depotapp/database/depot/DepotWithPurchases.kt,e\5\e5d3ea9a145224f6f19af585f1d1ae90a899bf53
-y
-Iapp/src/main/java/com/example/android/depotapp/database/share/ShareDao.kt,0\2\022e4bcd84c5411c1504b9aa74151b266ea7f41e
-
-Oapp/src/main/java/com/example/android/depotapp/database/purchase/PurchaseDao.kt,8\0\80bdeb640d40a84a88122be98fb41510c057e92d
 m
 =app/src/main/java/com/example/android/depotapp/model/Share.kt,8\f\8fa772ff04309a19a5ab36d8d00b3a048c0405d4
-‚
-Rapp/src/main/java/com/example/android/depotapp/database/share/ShareDatabaseItem.kt,5\f\5f21aef7dd930553b383e0b8b9701be21337a41c
-†
-Vapp/src/main/java/com/example/android/depotapp/database/purchase/PurchaseWithShares.kt,7\3\737fb07f9e7f0313d40a99a0d4c0584080e6dc33
 †
 Vapp/src/main/java/com/example/android/depotapp/ui/selectoption/SelectOptionActivity.kt,4\7\47872de0861cf019fddf294be3ec4581fdbdedd2
 ~
@@ -35,12 +25,6 @@ m
 =app/src/main/java/com/example/android/depotapp/model/Depot.kt,5\0\5031fa406b1c2e8c50d5008a7cd0aa306b01fef5
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
-y
-Iapp/src/main/java/com/example/android/depotapp/database/depot/DepotDao.kt,f\3\f37e9f2ed921294f6598078221e16a05a0b3bce2
-‚
-Rapp/src/main/java/com/example/android/depotapp/database/depot/DepotDatabaseItem.kt,1\8\185b9012779692c8b5bacca1e360507cf725667b
-ˆ
-Xapp/src/main/java/com/example/android/depotapp/database/purchase/PurchaseDatabaseItem.kt,6\0\60f3dce70e1529187dbe505234e6d293498f1d2f
 „
 Tapp/src/main/java/com/example/android/depotapp/ui/selectdepot/SelectDepotActivity.kt,4\c\4cdc8295c532024a60cddb660aa79921ed507690
 P
@@ -59,5 +43,12 @@ y
 Iapp/src/main/java/com/example/android/depotapp/modules/viewModelModule.kt,a\4\a40baa4ca4b11f54eb2b45cacb4d68bd8dee1688
 z
 Japp/src/main/java/com/example/android/depotapp/modules/repositoryModule.kt,b\a\ba8086c51bf3200610d27bf7193ea8c7d122dbc6
-~
-Napp/src/main/java/com/example/android/depotapp/database/depot/DepotDatabase.kt,4\0\40676e6f5fd42fe17f6a9c0d156066a529cef0dc
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+l
+<app/src/main/java/com/example/android/depotapp/utils/Util.kt,a\0\a002d633b76d55f9bc21a89b7fd32b687c979ff7
+…
+Uapp/src/main/java/com/example/android/depotapp/database/entities/DepotDatabaseItem.kt,4\c\4c8da6a72b31d24538b884970b536071346c2e15
+
+Qapp/src/main/java/com/example/android/depotapp/ui/selectdepot/DepotListAdapter.kt,2\c\2c6e00dc6f6d2c2d444b74c36353aaeff5535e0b

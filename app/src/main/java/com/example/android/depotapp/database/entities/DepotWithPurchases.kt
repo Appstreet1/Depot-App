@@ -1,8 +1,7 @@
-package com.example.android.depotapp.database.depot
+package com.example.android.depotapp.database.entities
 
 import androidx.room.Embedded
 import androidx.room.Relation
-import com.example.android.depotapp.database.purchase.PurchaseDatabaseItem
 
 data class DepotWithPurchases(
     @Embedded val depot: DepotDatabaseItem,
@@ -11,5 +10,4 @@ data class DepotWithPurchases(
         entityColumn = "depotId"
     )
     val purchases: List<PurchaseDatabaseItem>
-
 )

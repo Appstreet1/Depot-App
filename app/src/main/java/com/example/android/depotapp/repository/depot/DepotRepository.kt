@@ -1,29 +1,45 @@
 package com.example.android.depotapp.repository.depot
 
-import com.example.android.depotapp.database.depot.DepotDao
-import com.example.android.depotapp.database.depot.DepotDatabaseItem
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
+import com.example.android.depotapp.database.dao.DepotDao
+import com.example.android.depotapp.database.entities.DepotDatabaseItem
+import com.example.android.depotapp.database.entities.parseToDomainModel
+import com.example.android.depotapp.model.Depot
+import com.example.android.depotapp.model.parseToDatabaseModel
+import kotlinx.coroutines.*
 
-class DepotRepository(private val dao : DepotDao) {
+class DepotRepository(private val dao: DepotDao) {
 
-    val depots = dao.getDepots()
-
-    suspend fun getDepots(){
-        dao.getDepots()
+    val allDepots: LiveData<List<Depot>> = Transformations.map(dao.getAllDepots()) {
+        it.parseToDomainModel()
     }
 
-    suspend fun addDepot(depot: DepotDatabaseItem){
-        dao.addDepot(depot)
+    suspend fun addDepot(depots: Depot) {
+        withContext(Dispatchers.IO) {
+
+            val depotsToAdd = mutableListOf<Depot>()
+            depotsToAdd.add(depots)
+
+            dao.addDepot(depotsToAdd.parseToDatabaseModel())
+        }
     }
 
-    suspend fun updateDepot(depot: DepotDatabaseItem){
-        dao.updateDepot(depot)
+    suspend fun updateDepot(depot: DepotDatabaseItem) {
+        withContext(Dispatchers.IO) {
+            dao.updateDepot(depot)
+        }
     }
 
-    suspend fun deleteDepot(depot: DepotDatabaseItem){
-        dao.deleteDepot(depot)
+    suspend fun deleteDepot(depot: DepotDatabaseItem) {
+        withContext(Dispatchers.IO) {
+            dao.deleteDepot(depot)
+        }
     }
 
-    suspend fun deleteAllDepots(){
-        dao.deleteAllDepots()
+    suspend fun deleteAllDepots() {
+        withContext(Dispatchers.IO) {
+            dao.deleteAllDepots()
+        }
     }
 }
