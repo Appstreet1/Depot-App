@@ -37,8 +37,7 @@ interface StockApiService {
     suspend fun getShareTitleBySymbol(
         @Path("symbol") symbol: String,
         @Query("apiKey") apiKey: String
-    )
-
+    ) : Title
 }
 
 object StockApi {
