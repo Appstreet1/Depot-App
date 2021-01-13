@@ -7,7 +7,8 @@ import com.example.android.depotapp.model.Share
 @Entity(tableName = "shares")
 data class ShareDatabaseItem constructor(
     @PrimaryKey
-    var symbol: String?,
+    val shareId : String,
+    val symbol: String?,
     var title: String?,
     var price: Double?,
     var date: String?
