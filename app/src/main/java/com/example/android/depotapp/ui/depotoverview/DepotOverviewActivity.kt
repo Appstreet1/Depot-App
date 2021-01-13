@@ -4,8 +4,10 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.android.depotapp.R
 import com.example.android.depotapp.model.Depot
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class DepotOverviewActivity : AppCompatActivity() {
 
@@ -20,8 +22,32 @@ class DepotOverviewActivity : AppCompatActivity() {
         }
     }
 
+    private val viewModel by viewModel<DepotOverviewViewModel>()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_depot_overview)
+
+        observeShares()
+        viewModel.requestShareBySymbolAndDate("AAPL", "2021-01-12")
+        observeRequestedShare()
+
+    }
+
+    private fun observeRequestedShare() {
+        viewModel.share.observe(this, { share ->
+            viewModel.getTitleBySymbol(share.symbol.toString())
+        })
+    }
+
+    private fun observeShares() {
+        viewModel.getShares().observe(this, { shares ->
+            if (shares.isNotEmpty()) {
+                Log.i("TEST", shares[0].toString())
+            } else {
+                Log.i("TEST", "leer")
+            }
+        })
     }
 }
