@@ -34,7 +34,15 @@ class DepotOverviewViewModel(
         Log.i("TEST", _selectedDepot.value.toString())
     }
 
-    fun getDepotById(){
+    fun getDepotAndPurchasesById(){
+        TODO()
+    }
+
+    fun addPurchase(){
+        //TODO: add purchase to selected depot
+    }
+
+    fun addShareToPurchase(){
         TODO()
     }
 
