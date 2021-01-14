@@ -7,15 +7,15 @@ import android.os.Bundle
 import android.util.Log
 import com.example.android.depotapp.R
 import com.example.android.depotapp.model.Depot
-import com.example.android.depotapp.ui.depotoverview.DepotOverviewActivity
-import com.example.android.depotapp.ui.depotoverview.DepotOverviewViewModel
+import kotlinx.android.synthetic.main.activity_add_share.*
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.util.*
 
-class AddShareActivity : AppCompatActivity() {
+class PurchaseActivity : AppCompatActivity() {
 
     companion object {
         fun start(context: Context, depot: Depot) {
-            val intent = Intent(context, AddShareActivity::class.java)
+            val intent = Intent(context, PurchaseActivity::class.java)
 
             depot.run {
                 intent.putExtra("depot_arg", depot)
@@ -24,13 +24,15 @@ class AddShareActivity : AppCompatActivity() {
         }
     }
 
-    private val viewModel by viewModel<AddShareViewModel>()
+    private val viewModel by viewModel<PurchaseViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_share)
 
         getSelectedDepotFromIntent()
+        initOnClick()
+
     }
 
     private fun getSelectedDepotFromIntent() {
@@ -41,7 +43,23 @@ class AddShareActivity : AppCompatActivity() {
         }
     }
 
-//    private fun initOnClick(){
-//        addContentView()
-//    }
+
+    //TODO: Add purchase with date, amount, price, shares etc..
+    private fun initOnClick() {
+        add_share_btn.setOnClickListener {
+            val userInput = add_share_symbol_et.text.toString()
+            val symbol = userInput.toUpperCase(Locale.ROOT)
+
+
+            viewModel.getTitleBySymbol(symbol)
+
+            viewModel.title.observe(this, { title ->
+                if (title != null) {
+                    viewModel.addPurchase(title)
+                }else{
+                    Log.i("TEST", "add share error")
+                }
+            })
+        }
+    }
 }

@@ -82,3 +82,11 @@ o
 Yapp/src/main/java/com/example/android/depotapp/ui/depotoverview/DepotOverviewViewModel.kt,c\d\cd4dbfe75af212f2a588c5174d2ece93434acf28
 ˆ
 Xapp/src/main/java/com/example/android/depotapp/database/entities/PurchaseDatabaseItem.kt,c\4\c41deea28341ede189835ef78a6aa019a9f67400
+†
+Vapp/src/main/java/com/example/android/depotapp/database/entities/DepotWithPurchases.kt,6\9\6950b9d80c5991bfd786dbcd9d9ac648e4483987
+z
+Japp/src/main/java/com/example/android/depotapp/database/dao/PurchaseDao.kt,5\a\5a0f7a2dd8f4226f0828bcdcf0cc7f5fa38b4870
+
+Oapp/src/main/java/com/example/android/depotapp/ui/addshare/PurchaseViewModel.kt,4\6\46b66093910781997f2c836b485f61666ed27382
+~
+Napp/src/main/java/com/example/android/depotapp/ui/addshare/PurchaseActivity.kt,c\8\c801a2cedd4bcfe4ba5d0e4960102af0c9b5db6a

@@ -14,7 +14,7 @@ import com.example.android.depotapp.utils.NetworkResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class AddShareViewModel(
+class PurchaseViewModel(
     private val shareRepo: ShareRepository,
     private val purchaseRepo: PurchaseRepository
 ) : ViewModel() {
@@ -22,16 +22,27 @@ class AddShareViewModel(
     val share: LiveData<Share>
         get() = _share
 
+    val title: LiveData<String>
+        get() = _title
+
+
     private val _share = MutableLiveData<Share>()
     private val _selectedDepot = MutableLiveData<Depot>()
-
+    private var _title = MutableLiveData<String>()
 
     fun setSelectedDepot(depot: Depot) {
         _selectedDepot.value = depot
     }
 
-    fun addPurchase(purchase: Purchase) {
+    fun addPurchase(title : String) {
         viewModelScope.launch(Dispatchers.IO) {
+
+            val purchase = Purchase(
+                0, title, 1.0, 0.0,
+                "2012", 0.0, _selectedDepot.value!!.id
+            )
+            Log.i("TEST", purchase.titleOfShare)
+
             purchaseRepo.addPurchase(purchase)
         }
     }
@@ -58,9 +69,11 @@ class AddShareViewModel(
 
     fun getTitleBySymbol(symbol: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val title = shareRepo.getTitleBySymbol(symbol)
+            val title = shareRepo.getTitleBySymbol(symbol).toString()
 
-            Log.i("TEST", title.toString())
+            _title.postValue(title)
+
+            Log.i("TEST", _title.value.toString())
         }
     }
 }
