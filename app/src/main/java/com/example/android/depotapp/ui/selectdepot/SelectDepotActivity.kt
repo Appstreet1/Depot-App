@@ -57,7 +57,6 @@ class SelectDepotActivity : AppCompatActivity() {
     private fun observeDepots() {
         viewModel.getDepots().observe(this, { depots ->
             listAdapter.setData(depots)
-
         })
     }
 

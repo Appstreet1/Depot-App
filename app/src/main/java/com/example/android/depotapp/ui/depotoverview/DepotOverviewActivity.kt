@@ -8,12 +8,12 @@ import android.util.Log
 import com.example.android.depotapp.R
 import com.example.android.depotapp.model.Depot
 import com.example.android.depotapp.model.Purchase
+import com.example.android.depotapp.ui.addshare.AddShareActivity
+import kotlinx.android.synthetic.main.activity_depot_overview.*
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.lang.Exception
 
 class DepotOverviewActivity : AppCompatActivity() {
-
-    //TODO: fetch data(purchases, shares..) from current depot
-    //TODO: add share to particular purchase, depot
 
     companion object {
         fun start(context: Context, depot: Depot) {
@@ -33,23 +33,10 @@ class DepotOverviewActivity : AppCompatActivity() {
         setContentView(R.layout.activity_depot_overview)
 
         getSelectedDepotFromIntent()
-        observeShares()
-        observeRequestedShare()
+        initOnClick()
         observePurchases()
 
-        val purchase = Purchase(
-            0, "title", 1.0, 200.0, "2020-10-21", 1.0,
-            viewModel.selectedDepot.value!!.id)
-
-        viewModel.addPurchase(purchase)
         viewModel.getPurchasesByDepotId()
-    }
-
-
-    private fun observePurchases() {
-        viewModel.purchases.observe(this, { purchases ->
-            Log.i("TEST", purchases[1].purchaseId.toString())
-        })
     }
 
     private fun getSelectedDepotFromIntent() {
@@ -59,18 +46,18 @@ class DepotOverviewActivity : AppCompatActivity() {
         }
     }
 
-    private fun observeRequestedShare() {
-        viewModel.share.observe(this, { share ->
-            viewModel.getTitleBySymbol(share.symbol.toString())
-        })
+    private fun initOnClick(){
+        overview_add_share.setOnClickListener {
+            AddShareActivity.start(this, viewModel.selectedDepot.value!!)
+        }
     }
 
-    private fun observeShares() {
-        viewModel.getShares().observe(this, { shares ->
-            if (shares.isNotEmpty()) {
-//                Log.i("TEST", "shares available")
-            } else {
-//                Log.i("TEST", "leer")
+    private fun observePurchases() {
+        viewModel.purchases.observe(this, { purchases ->
+            try {
+                Log.i("TEST", purchases[1].purchaseId.toString())
+            }catch (e:Exception){
+                Log.i("TEST", "no purchases brother")
             }
         })
     }

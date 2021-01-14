@@ -6,6 +6,7 @@ import com.example.android.depotapp.database.dao.ShareDao
 import com.example.android.depotapp.database.entities.ShareDatabaseItem
 import com.example.android.depotapp.database.entities.parseToDomainModel
 import com.example.android.depotapp.model.Share
+import com.example.android.depotapp.model.parseToDatabasemodel
 import com.example.android.depotapp.network.StockApi
 import com.example.android.depotapp.network.Title
 import com.example.android.depotapp.network.parseToDomainModel
@@ -48,7 +49,7 @@ class ShareRepository(private val dao: ShareDao) {
 
     suspend fun addShare(share: Share) {
         withContext(Dispatchers.IO) {
-            dao.addShare(share.pa)
+            dao.addShare(share.parseToDatabasemodel())
         }
     }
 }

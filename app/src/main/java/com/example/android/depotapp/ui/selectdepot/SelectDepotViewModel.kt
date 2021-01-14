@@ -13,6 +13,4 @@ import kotlinx.coroutines.withContext
 class SelectDepotViewModel(private val repository: DepotRepository) : ViewModel() {
 
     fun getDepots() = repository.allDepots
-
-
 }
