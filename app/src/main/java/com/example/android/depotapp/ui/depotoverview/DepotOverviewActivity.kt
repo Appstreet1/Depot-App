@@ -11,9 +11,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class DepotOverviewActivity : AppCompatActivity() {
 
+    //TODO: fetch data(purchases, shares..) from current depot
     //TODO: add share to particular purchase, depot
-    //TODO: fetch data from current daepot
-    //TODO: delete depot
 
     companion object {
         fun start(context: Context, depot: Depot) {
