@@ -7,7 +7,10 @@ import android.os.Bundle
 import android.util.Log
 import com.example.android.depotapp.R
 import com.example.android.depotapp.model.Depot
+import com.example.android.depotapp.ui.addshare.PurchaseActivity
+import kotlinx.android.synthetic.main.activity_depot_overview.*
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.lang.Exception
 
 class DepotOverviewActivity : AppCompatActivity() {
 
@@ -24,29 +27,39 @@ class DepotOverviewActivity : AppCompatActivity() {
 
     private val viewModel by viewModel<DepotOverviewViewModel>()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_depot_overview)
 
-        observeShares()
-        viewModel.requestShareBySymbolAndDate("AAPL", "2021-01-12")
-        observeRequestedShare()
+        getSelectedDepotFromIntent()
+        initOnClick()
+        observePurchases()
 
+        viewModel.getPurchasesByDepotId()
     }
 
-    private fun observeRequestedShare() {
-        viewModel.share.observe(this, { share ->
-            viewModel.getTitleBySymbol(share.symbol.toString())
-        })
+    private fun getSelectedDepotFromIntent() {
+        val depot: Depot? = intent.getParcelableExtra("depot_arg")
+        if (depot != null) {
+            viewModel.setSelectedDepot(depot)
+        }
     }
 
-    private fun observeShares() {
-        viewModel.getShares().observe(this, { shares ->
-            if (shares.isNotEmpty()) {
-                Log.i("TEST", shares[0].toString())
-            } else {
-                Log.i("TEST", "leer")
+    private fun initOnClick(){
+        overview_add_share.setOnClickListener {
+            PurchaseActivity.start(this, viewModel.selectedDepot.value!!)
+        }
+    }
+
+    private fun observePurchases() {
+        viewModel.purchases.observe(this, { purchases ->
+            try {
+                for (i in purchases){
+                    Log.i("TEST", i.titleOfShare + " " + i.depotId + " " + i.purchaseId)
+                }
+
+            }catch (e:Exception){
+                Log.i("TEST", "no purchases brother")
             }
         })
     }

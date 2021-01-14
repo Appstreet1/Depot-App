@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DepotApp">
-        <activity android:name=".ui.addshare.AddShareActivity" />
+        <activity android:name=".ui.addshare.PurchaseActivity" />
         <activity android:name=".ui.saveplan.SavePlanActivity" />
         <activity android:name=".ui.selectoption.SelectOptionActivity" />
         <activity android:name=".ui.depotoverview.DepotOverviewActivity" />

@@ -20,18 +20,21 @@ data class ShareDTO(
 )
 
 fun ShareDTO.parseToDomainModel() = Share(
-    symbol = symbol,
-    title = symbol,
-    price = price,
-    date = date
-)
-
-fun ShareDTO.parseToDatabaseModel() = ShareDatabaseItem(
+    id = 0,
     symbol = symbol,
     title = symbol,
     price = price,
     date = date,
-    shareId = symbol
+    purchaseId = 0
+)
+
+fun ShareDTO.parseToDatabaseModel() = ShareDatabaseItem(
+    shareId = 0,
+    symbol = symbol,
+    title = symbol,
+    price = price,
+    date = date,
+    purchaseId = 0
 )
 
 

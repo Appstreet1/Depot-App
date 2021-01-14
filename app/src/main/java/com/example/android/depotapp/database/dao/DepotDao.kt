@@ -11,17 +11,20 @@ interface DepotDao {
     fun getAllDepots(): LiveData<List<DepotDatabaseItem>>
 
     @Transaction
-    @Query("SELECT * FROM depots")
-    suspend fun getDepotsWithPurchases(): List<DepotWithPurchases>
+    @Query("SELECT * FROM depots WHERE id=:id")
+    suspend fun getDepotsWithPurchases(id: Long): DepotWithPurchases
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(vararg depots: DepotDatabaseItem)
+
+//    @Query("SELECT * FROM depots ")
+//    fun getDepotById(id : Long) : DepotDatabaseItem
 
     @Update
     suspend fun updateDepot(depot: DepotDatabaseItem)
 
     @Insert
-    suspend fun addDepot(depot: List<DepotDatabaseItem>)
+    suspend fun addDepot(depot: DepotDatabaseItem)
 
     @Delete
     suspend fun deleteDepot(depot: DepotDatabaseItem)

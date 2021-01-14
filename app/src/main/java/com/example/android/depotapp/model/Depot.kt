@@ -8,10 +8,10 @@ import java.util.*
 
 @Parcelize
 data class Depot(
-    val id: Long,
-    var title: String,
-    var value: Double,
-    var valueIncrease: Double
+    val id: Long = 0,
+    var title: String = "",
+    var value: Double = 0.0,
+    var valueIncrease: Double = 0.0
 ) : Parcelable
 
 
@@ -24,4 +24,13 @@ fun List<Depot>.parseToDatabaseModel(): List<DepotDatabaseItem> {
             valueIncrease = it.valueIncrease
         )
     }
+}
+
+fun Depot.parseToDatabasemodel(): DepotDatabaseItem {
+    return DepotDatabaseItem(
+        id = id,
+        title = title,
+        value = value,
+        valueIncrease = valueIncrease
+    )
 }

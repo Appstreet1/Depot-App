@@ -3,11 +3,10 @@ package com.example.android.depotapp.repository.share
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.example.android.depotapp.database.dao.ShareDao
-import com.example.android.depotapp.database.entities.ShareDatabaseItem
 import com.example.android.depotapp.database.entities.parseToDomainModel
 import com.example.android.depotapp.model.Share
+import com.example.android.depotapp.model.parseToDatabasemodel
 import com.example.android.depotapp.network.StockApi
-import com.example.android.depotapp.network.Title
 import com.example.android.depotapp.network.parseToDomainModel
 import com.example.android.depotapp.utils.NetworkResult
 import com.example.android.depotapp.utils.const.API_KEY
@@ -41,14 +40,14 @@ class ShareRepository(private val dao: ShareDao) {
         return StockApi.retrofitService.getShare(symbol, date, API_KEY).parseToDomainModel()
     }
 
-    suspend fun getTitleBySymbol(symbol: String): Title {
+    suspend fun getTitleBySymbol(symbol: String): String {
 
-        return StockApi.retrofitService.getShareTitleBySymbol(symbol, API_KEY)
+        return StockApi.retrofitService.getShareTitleBySymbol(symbol, API_KEY).title
     }
 
-    suspend fun addShare(share: ShareDatabaseItem) {
+    suspend fun addShare(share: Share) {
         withContext(Dispatchers.IO) {
-            dao.addShare(share)
+            dao.addShare(share.parseToDatabasemodel())
         }
     }
 }

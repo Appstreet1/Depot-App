@@ -3,23 +3,26 @@ package com.example.android.depotapp.database.dao
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.android.depotapp.database.entities.PurchaseDatabaseItem
-import com.example.android.depotapp.database.entities.PurchaseWithShares
 import com.example.android.depotapp.database.entities.ShareDatabaseItem
+import com.example.android.depotapp.model.Purchase
 
 @Dao
 interface PurchaseDao {
     @Query("SELECT * FROM purchases")
-    fun getPurchases() : List<PurchaseDatabaseItem>
+    fun getPurchases(): LiveData<List<PurchaseDatabaseItem>>
 
-    @Transaction
-    @Query("SELECT * FROM purchases")
-    fun getPurchasesWithShares(): LiveData<List<PurchaseWithShares>>
+//    @Transaction
+//    @Query("SELECT * FROM purchases")
+//    fun getPurchasesWithShares(): LiveData<List<PurchaseWithShares>>
+
+    @Query("SELECT * FROM purchases WHERE depotId=:depotId")
+    fun getPurchasesByDepotId(depotId: Long): List<Purchase>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg shares: ShareDatabaseItem)
 
     @Insert
-    fun addPurchase(purchase : PurchaseDatabaseItem)
+    fun addPurchase(purchase: PurchaseDatabaseItem)
 
     @Delete
     fun deletePurchase(purchase: PurchaseDatabaseItem)

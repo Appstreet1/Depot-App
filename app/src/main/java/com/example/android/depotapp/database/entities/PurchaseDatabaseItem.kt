@@ -7,15 +7,14 @@ import java.util.*
 
 @Entity(tableName = "purchases")
 data class PurchaseDatabaseItem constructor(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     var purchaseId: Long,
     var titleOfShare: String,
     var amountOfShares: Double,
     var totalValue: Double,
-    var dateOfPurchase: Date,
+    var dateOfPurchase: String,
     var valueIncrease: Double,
-    var depotId: Long,
-    var shareId: Long
+    var depotId: Long
 )
 
 fun List<PurchaseDatabaseItem>.parseToDomainModel(): List<Unit> {
@@ -30,4 +29,16 @@ fun List<PurchaseDatabaseItem>.parseToDomainModel(): List<Unit> {
             depotId = it.depotId
         )
     }
+}
+
+fun Purchase.parseToDatabaseModel(): PurchaseDatabaseItem {
+    return PurchaseDatabaseItem(
+        purchaseId = purchaseId,
+        titleOfShare = titleOfShare,
+        amountOfShares = amountOfShares,
+        totalValue = totalValue,
+        dateOfPurchase = dateOfPurchase,
+        valueIncrease = valueIncrease,
+        depotId = depotId
+    )
 }

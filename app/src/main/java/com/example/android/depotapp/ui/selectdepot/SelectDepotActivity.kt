@@ -4,24 +4,18 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.android.depotapp.R
-import com.example.android.depotapp.database.DepotDatabase
-import com.example.android.depotapp.database.entities.DepotDatabaseItem
-import com.example.android.depotapp.model.Depot
 import com.example.android.depotapp.ui.adddepot.AddDepotActivity
-import com.example.android.depotapp.ui.depotoverview.DepotOverviewActivity
 import kotlinx.android.synthetic.main.activity_select_depot.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class SelectDepotActivity : AppCompatActivity() {
 
-    private val selectDepotViewModel by viewModel<SelectDepotViewModel>()
+    private val viewModel by viewModel<SelectDepotViewModel>()
     private lateinit var listAdapter: DepotListAdapter
 
     //TODO: don't repeat yourself
@@ -61,7 +55,7 @@ class SelectDepotActivity : AppCompatActivity() {
     }
 
     private fun observeDepots() {
-        selectDepotViewModel.getDepots().observe(this, { depots ->
+        viewModel.getDepots().observe(this, { depots ->
             listAdapter.setData(depots)
         })
     }
