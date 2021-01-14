@@ -33,10 +33,19 @@ class DepotOverviewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_depot_overview)
 
+        getSelectedDepotFromIntent()
         observeShares()
-        viewModel.requestShareBySymbolAndDate("AAPL", "2021-01-12")
+//        viewModel.requestShareBySymbolAndDate("AAPL", "2021-01-12")
         observeRequestedShare()
 
+    }
+
+    private fun getSelectedDepotFromIntent() {
+        val depot: Depot? = intent.getParcelableExtra("depot_arg")
+        Log.i("TEST", depot.toString() + " act")
+        if (depot != null) {
+            viewModel.setSelectedDepot(depot)
+        }
     }
 
     private fun observeRequestedShare() {

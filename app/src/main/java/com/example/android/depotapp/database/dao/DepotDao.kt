@@ -21,7 +21,7 @@ interface DepotDao {
     suspend fun updateDepot(depot: DepotDatabaseItem)
 
     @Insert
-    suspend fun addDepot(depot: List<DepotDatabaseItem>)
+    suspend fun addDepot(depot: DepotDatabaseItem)
 
     @Delete
     suspend fun deleteDepot(depot: DepotDatabaseItem)
