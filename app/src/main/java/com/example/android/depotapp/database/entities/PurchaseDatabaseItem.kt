@@ -27,7 +27,21 @@ fun List<PurchaseDatabaseItem>.parseToDomainModel(): List<Unit> {
             totalValue = it.totalValue,
             dateOfPurchase = it.dateOfPurchase,
             valueIncrease = it.valueIncrease,
-            depotId = it.depotId
+            depotId = it.depotId,
+            shareId = it.shareId
         )
     }
+}
+
+fun Purchase.parseToDatabaseModel(): PurchaseDatabaseItem {
+    return PurchaseDatabaseItem(
+        purchaseId = purchaseId,
+        titleOfShare = titleOfShare,
+        amountOfShares = amountOfShares,
+        totalValue = totalValue,
+        dateOfPurchase = dateOfPurchase,
+        valueIncrease = valueIncrease,
+        depotId = depotId,
+        shareId = shareId
+    )
 }

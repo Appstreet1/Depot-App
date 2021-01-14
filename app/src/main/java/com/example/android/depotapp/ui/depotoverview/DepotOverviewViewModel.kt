@@ -34,6 +34,10 @@ class DepotOverviewViewModel(
         Log.i("TEST", _selectedDepot.value.toString())
     }
 
+    fun getDepotById(){
+        TODO()
+    }
+
     fun deleteDepot(depot: Depot?) {
         viewModelScope.launch(Dispatchers.IO) {
             if (depot != null) {
