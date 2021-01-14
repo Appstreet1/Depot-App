@@ -11,5 +11,6 @@ val databaseModule = module {
 
     single { DepotDatabase.getDatabase(androidApplication()) }
     single { DepotDatabase.getDatabase(androidApplication()).depotDao }
-    single {DepotDatabase.getDatabase(androidApplication()).shareDao}
+    single { DepotDatabase.getDatabase(androidApplication()).shareDao }
+    single { DepotDatabase.getDatabase(androidApplication()).purchaseDao }
 }

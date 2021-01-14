@@ -7,11 +7,11 @@ import android.os.Bundle
 import android.util.Log
 import com.example.android.depotapp.R
 import com.example.android.depotapp.model.Depot
+import com.example.android.depotapp.model.Purchase
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class DepotOverviewActivity : AppCompatActivity() {
 
-    //TODO:
     //TODO: fetch data(purchases, shares..) from current depot
     //TODO: add share to particular purchase, depot
 
@@ -28,21 +28,32 @@ class DepotOverviewActivity : AppCompatActivity() {
 
     private val viewModel by viewModel<DepotOverviewViewModel>()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_depot_overview)
 
         getSelectedDepotFromIntent()
         observeShares()
-//        viewModel.requestShareBySymbolAndDate("AAPL", "2021-01-12")
         observeRequestedShare()
+        observePurchases()
 
+        val purchase = Purchase(
+            0, "title", 1.0, 200.0, "2020-10-21", 1.0,
+            viewModel.selectedDepot.value!!.id)
+
+        viewModel.addPurchase(purchase)
+        viewModel.getPurchasesByDepotId()
+    }
+
+
+    private fun observePurchases() {
+        viewModel.purchases.observe(this, { purchases ->
+            Log.i("TEST", purchases[1].purchaseId.toString())
+        })
     }
 
     private fun getSelectedDepotFromIntent() {
         val depot: Depot? = intent.getParcelableExtra("depot_arg")
-        Log.i("TEST", depot.toString() + " act")
         if (depot != null) {
             viewModel.setSelectedDepot(depot)
         }
@@ -57,9 +68,9 @@ class DepotOverviewActivity : AppCompatActivity() {
     private fun observeShares() {
         viewModel.getShares().observe(this, { shares ->
             if (shares.isNotEmpty()) {
-                Log.i("TEST", shares[0].toString())
+//                Log.i("TEST", "shares available")
             } else {
-                Log.i("TEST", "leer")
+//                Log.i("TEST", "leer")
             }
         })
     }

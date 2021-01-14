@@ -7,11 +7,12 @@ import com.example.android.depotapp.model.Share
 @Entity(tableName = "shares")
 data class ShareDatabaseItem constructor(
     @PrimaryKey
-    val shareId : String,
+    val shareId : Long,
     val symbol: String?,
     var title: String?,
     var price: Double?,
-    var date: String?
+    var date: String?,
+    val purchaseId : Long
 )
 
 fun List<ShareDatabaseItem>.parseToDomainModel(): List<Share> {

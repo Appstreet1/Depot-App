@@ -11,6 +11,6 @@ val viewModelModule = module {
 
     viewModel { SelectDepotViewModel(repository = get()) }
     viewModel { AddDepotViewModel(repository = get()) }
-    viewModel { DepotOverviewViewModel(shareRepo = get(), depotRepo = get()) }
+    viewModel { DepotOverviewViewModel(shareRepo = get(), depotRepo = get(), purchaseRepo = get()) }
 
 }

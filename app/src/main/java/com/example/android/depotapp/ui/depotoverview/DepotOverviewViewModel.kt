@@ -5,9 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.android.depotapp.database.entities.DepotWithPurchases
 import com.example.android.depotapp.model.Depot
+import com.example.android.depotapp.model.Purchase
 import com.example.android.depotapp.model.Share
 import com.example.android.depotapp.repository.depot.DepotRepository
+import com.example.android.depotapp.repository.purchases.PurchaseRepository
 import com.example.android.depotapp.repository.share.ShareRepository
 import com.example.android.depotapp.utils.NetworkResult
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +18,8 @@ import kotlinx.coroutines.launch
 
 class DepotOverviewViewModel(
     private val shareRepo: ShareRepository,
-    private val depotRepo: DepotRepository
+    private val depotRepo: DepotRepository,
+    private val purchaseRepo: PurchaseRepository
 ) : ViewModel() {
 
     fun getShares() = shareRepo.shares
@@ -26,24 +30,36 @@ class DepotOverviewViewModel(
     val selectedDepot: LiveData<Depot>
         get() = _selectedDepot
 
+    val purchases: LiveData<List<Purchase>>
+        get() = _purchasesOfDepot
+
     private val _share = MutableLiveData<Share>()
     private val _selectedDepot = MutableLiveData<Depot>()
+    private val _purchasesOfDepot = MutableLiveData<List<Purchase>>()
 
     fun setSelectedDepot(depot: Depot) {
         _selectedDepot.value = depot
-        Log.i("TEST", _selectedDepot.value.toString())
     }
 
-    fun getDepotAndPurchasesById(){
-        TODO()
+    fun getPurchasesByDepotId() {
+        viewModelScope.launch(Dispatchers.IO) {
+            _purchasesOfDepot.postValue(purchaseRepo.getPurchasesByDepotId(_selectedDepot.value!!.id))
+        }
     }
 
-    fun addPurchase(){
-        //TODO: add purchase to selected depot
+    //belongs to addshareViewmodel
+    fun addPurchase(purchase: Purchase) {
+        viewModelScope.launch(Dispatchers.IO) {
+            purchaseRepo.addPurchase(purchase)
+        }
     }
 
-    fun addShareToPurchase(){
-        TODO()
+    //belongs to addshareviewmodel
+    fun addShareToPurchase() {
+        viewModelScope.launch(Dispatchers.IO) {
+
+            shareRepo.addShare(_share.value)
+        }
     }
 
     fun deleteDepot(depot: Depot?) {
@@ -53,7 +69,6 @@ class DepotOverviewViewModel(
             }
         }
     }
-
 
     fun requestShareBySymbolAndDate(symbol: String, date: String) {
         viewModelScope.launch(Dispatchers.IO) {

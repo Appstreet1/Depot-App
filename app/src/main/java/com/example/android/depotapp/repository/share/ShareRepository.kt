@@ -46,9 +46,9 @@ class ShareRepository(private val dao: ShareDao) {
         return StockApi.retrofitService.getShareTitleBySymbol(symbol, API_KEY)
     }
 
-    suspend fun addShare(share: ShareDatabaseItem) {
+    suspend fun addShare(share: Share) {
         withContext(Dispatchers.IO) {
-            dao.addShare(share)
+            dao.addShare(share.pa)
         }
     }
 }
