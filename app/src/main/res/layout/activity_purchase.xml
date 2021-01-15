@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.addshare.PurchaseActivity">
+    tools:context=".ui.addpurchase.PurchaseActivity">
 
     <EditText
         android:id="@+id/purchase_symbol_et"

@@ -1,4 +1,4 @@
-package com.example.android.depotapp.ui.addshare
+package com.example.android.depotapp.ui.addpurchase
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -13,12 +13,13 @@ import com.example.android.depotapp.repository.share.ShareRepository
 import com.example.android.depotapp.utils.NetworkResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.*
 
 class PurchaseViewModel(
     private val shareRepo: ShareRepository,
     private val purchaseRepo: PurchaseRepository
 ) : ViewModel() {
+
+    val allShares = shareRepo.shares
 
     val share: LiveData<Share>
         get() = _share
@@ -46,8 +47,7 @@ class PurchaseViewModel(
 
             when (shareRepo.requestShareBySymbolAndDate(symbol, date)) {
                 is NetworkResult.Success -> {
-                    val share = shareRepo.getShareBySymbolAndDate(symbol, date)
-                    addShareToPurchase(share)
+                    _share.postValue(shareRepo.getShareBySymbolAndDate(symbol, date))
                     requestTitleBySymbol(symbol)
                 }
                 is NetworkResult.Error -> _shareIsValid.postValue(false)
@@ -76,11 +76,12 @@ class PurchaseViewModel(
 
             try {
                 val purchase = Purchase(
-                    0, _title.value.toString(), amount, 0.0,
-                    date, 0.0, depotId
-                )
+                    "", _title.value.toString(), amount, 0.0,
+                    date, 0.0, depotId, 0 )
+
 
                 purchaseRepo.addPurchase(purchase)
+                addShareToPurchase(purchase.purchaseId)
 
             } catch (e: Exception) {
 
@@ -89,14 +90,12 @@ class PurchaseViewModel(
         }
     }
 
-    private fun addShareToPurchase(share: Share) {
+    private fun addShareToPurchase(purchaseId: String) {
         viewModelScope.launch(Dispatchers.IO) {
-
-            Log.i(
-                "TEST",
-                "symbol: " + share.symbol + " date " + share.date +
-                        " price: " + share.price + "purchaseId: " + share.purchaseId + " title " + share.title
-            )
+            _share.value?.apply {
+                val share = Share(id, symbol, title, price, date, purchaseId)
+                shareRepo.addShare(share)
+            }
         }
     }
 }

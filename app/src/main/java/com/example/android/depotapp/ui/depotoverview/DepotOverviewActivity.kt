@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import com.example.android.depotapp.R
 import com.example.android.depotapp.model.Depot
-import com.example.android.depotapp.ui.addshare.PurchaseActivity
+import com.example.android.depotapp.ui.addpurchase.PurchaseActivity
 import kotlinx.android.synthetic.main.activity_depot_overview.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.lang.Exception

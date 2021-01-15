@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.example.android.depotapp.database.dao.PurchaseDao
 import com.example.android.depotapp.database.entities.PurchaseDatabaseItem
-import com.example.android.depotapp.database.entities.PurchaseWithShares
 import com.example.android.depotapp.database.entities.parseToDatabaseModel
 import com.example.android.depotapp.database.entities.parseToDomainModel
 import com.example.android.depotapp.model.Purchase

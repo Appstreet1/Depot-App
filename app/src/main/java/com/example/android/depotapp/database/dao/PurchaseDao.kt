@@ -3,7 +3,6 @@ package com.example.android.depotapp.database.dao
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.android.depotapp.database.entities.PurchaseDatabaseItem
-import com.example.android.depotapp.database.entities.PurchaseWithShares
 import com.example.android.depotapp.database.entities.ShareDatabaseItem
 import com.example.android.depotapp.model.Purchase
 

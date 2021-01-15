@@ -1,4 +1,4 @@
-package com.example.android.depotapp.ui.addshare
+package com.example.android.depotapp.ui.addpurchase
 
 import android.content.Context
 import android.content.Intent
@@ -34,6 +34,7 @@ class PurchaseActivity : AppCompatActivity() {
         getSelectedDepotFromIntent()
         initOnClick()
         observeStatus()
+        observeShares()
     }
 
     private fun getSelectedDepotFromIntent() {
@@ -50,11 +51,11 @@ class PurchaseActivity : AppCompatActivity() {
             val symbol = purchase_symbol_et.text.toString().toUpperCase(Locale.ROOT)
             val date = purchase_date.text.toString()
 
-            viewModel.requestShareBySymbolAndDate(symbol,date)
+            viewModel.requestShareBySymbolAndDate(symbol, date)
         }
     }
 
-    private fun observeStatus(){
+    private fun observeStatus() {
         viewModel.shareIsValid.observe(this, { shareIsValid ->
             if (shareIsValid) {
 
@@ -67,6 +68,20 @@ class PurchaseActivity : AppCompatActivity() {
 
             } else {
                 Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun observeShares() {
+        viewModel.allShares.observe(this, { shares ->
+            try {
+                for (share in shares){
+                    Log.i("TEST", "shares: " + "id: " + share.id + " price: "
+                     + share.price + " purchaseId: " + share.purchaseId+ " symbol: " + share.symbol + " " + share.date)
+                }
+
+            } catch (e: Exception) {
+                Log.i("TEST", e.toString())
             }
         })
     }

@@ -9,7 +9,7 @@ class Share(
     val title: String?,
     val price: Double?,
     val date: String?,
-    val purchaseId: Long
+    val purchaseId: String
 )
 
 fun Share.parseToDatabasemodel(): ShareDatabaseItem {
