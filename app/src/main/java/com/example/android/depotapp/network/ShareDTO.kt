@@ -25,7 +25,7 @@ fun ShareDTO.parseToDomainModel() = Share(
     title = symbol,
     price = price,
     date = date,
-    purchaseId = UUID.randomUUID().toString()
+    purchaseId = null
 )
 
 fun ShareDTO.parseToDatabaseModel() = ShareDatabaseItem(
@@ -34,7 +34,7 @@ fun ShareDTO.parseToDatabaseModel() = ShareDatabaseItem(
     title = symbol,
     price = price,
     date = date,
-    purchaseId = UUID.randomUUID().toString()
+    purchaseId = null
 )
 
 

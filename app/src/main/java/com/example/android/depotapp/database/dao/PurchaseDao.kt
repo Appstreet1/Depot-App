@@ -11,7 +11,6 @@ interface PurchaseDao {
     @Query("SELECT * FROM purchases")
     fun getPurchases(): LiveData<List<PurchaseDatabaseItem>>
 
-
     @Query("SELECT * FROM purchases WHERE depotId=:depotId")
     fun getPurchasesByDepotId(depotId: Long): List<Purchase>
 

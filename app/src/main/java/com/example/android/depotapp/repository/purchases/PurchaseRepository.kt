@@ -26,10 +26,10 @@ class PurchaseRepository(private val dao: PurchaseDao) {
     }
 
 
-    suspend fun addPurchase(purchase: Purchase) {
+    suspend fun addPurchase(purchase: PurchaseDatabaseItem) {
 
         withContext(Dispatchers.IO) {
-            dao.addPurchase(purchase.parseToDatabaseModel())
+            dao.addPurchase(purchase)
         }
     }
 

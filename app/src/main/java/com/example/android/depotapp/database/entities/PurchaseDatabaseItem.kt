@@ -7,8 +7,8 @@ import java.util.*
 
 @Entity(tableName = "purchases")
 data class PurchaseDatabaseItem constructor(
-    @PrimaryKey
-    var purchaseId: String,
+    @PrimaryKey(autoGenerate = true)
+    var purchaseId: Long,
     var titleOfShare: String,
     var amountOfShares: Double,
     var totalValue: Double,

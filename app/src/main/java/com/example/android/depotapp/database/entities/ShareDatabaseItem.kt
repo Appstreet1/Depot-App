@@ -12,7 +12,7 @@ data class ShareDatabaseItem constructor(
     var title: String?,
     var price: Double?,
     var date: String?,
-    val purchaseId: String
+    val purchaseId: Long?
 )
 
 fun List<ShareDatabaseItem>.parseToDomainModel(): List<Share> {

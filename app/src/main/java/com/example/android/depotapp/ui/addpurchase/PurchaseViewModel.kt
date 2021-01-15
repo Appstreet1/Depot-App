@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.android.depotapp.database.entities.PurchaseDatabaseItem
 import com.example.android.depotapp.model.Depot
 import com.example.android.depotapp.model.Purchase
 import com.example.android.depotapp.model.Share
@@ -75,10 +76,9 @@ class PurchaseViewModel(
         viewModelScope.launch(Dispatchers.IO) {
 
             try {
-                val purchase = Purchase(
-                    "", _title.value.toString(), amount, 0.0,
+                val purchase = PurchaseDatabaseItem(
+                    0, _title.value.toString(), amount, 0.0,
                     date, 0.0, depotId, 0 )
-
 
                 purchaseRepo.addPurchase(purchase)
                 addShareToPurchase(purchase.purchaseId)
@@ -90,7 +90,7 @@ class PurchaseViewModel(
         }
     }
 
-    private fun addShareToPurchase(purchaseId: String) {
+    private fun addShareToPurchase(purchaseId: Long) {
         viewModelScope.launch(Dispatchers.IO) {
             _share.value?.apply {
                 val share = Share(id, symbol, title, price, date, purchaseId)

@@ -1,13 +1,8 @@
 package com.example.android.depotapp.ui.selectdepot
 
-import android.content.Context
-import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridLayout
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.depotapp.R
 import com.example.android.depotapp.model.Depot
@@ -15,23 +10,23 @@ import com.example.android.depotapp.ui.depotoverview.DepotOverviewActivity
 import kotlinx.android.synthetic.main.depot_list_item.view.*
 
 class DepotListAdapter(private val depots: ArrayList<Depot> = ArrayList()
-) : RecyclerView.Adapter<DepotListAdapter.TaskViewHolder>() {
+) : RecyclerView.Adapter<DepotListAdapter.DepotViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DepotViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.depot_list_item, parent, false)
-        return TaskViewHolder(view)
+        return DepotViewHolder(view)
     }
 
     override fun getItemCount(): Int {
         return depots.size
     }
 
-    override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DepotViewHolder, position: Int) {
         holder.update(depots[position])
     }
 
-    class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class DepotViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun update(depot: Depot) = with(itemView) {
 
             depot_list_item_title.text = depot.title
