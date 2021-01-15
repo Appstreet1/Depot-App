@@ -6,8 +6,6 @@ m
 †
 Vapp/src/main/java/com/example/android/depotapp/ui/selectoption/SelectOptionActivity.kt,4\7\47872de0861cf019fddf294be3ec4581fdbdedd2
 ~
-Napp/src/main/java/com/example/android/depotapp/ui/addshare/AddShareActivity.kt,b\7\b76933dbfc5f5c4a8dbc65c894ce0d3485ef3ed1
-~
 Napp/src/main/java/com/example/android/depotapp/ui/adddepot/AddDepotActivity.kt,b\3\b3d4b5de920e9e56d08e673026b97b3698d71b84
 ˆ
 Xapp/src/main/java/com/example/android/depotapp/ui/depotoverview/DepotOverviewActivity.kt,3\e\3e4fe56d3a053ee0f2523e3930e89ec9558580e8

@@ -25,25 +25,39 @@ class PurchaseViewModel(
     val title: LiveData<String>
         get() = _title
 
+    val purchaseAdded: LiveData<Boolean>
+        get() = _purchaseAdded
+
+    val networkSuccess: LiveData<Boolean>
+        get() = _networkSuccess
+
 
     private val _share = MutableLiveData<Share>()
     private val _selectedDepot = MutableLiveData<Depot>()
     private var _title = MutableLiveData<String>()
+    private var _purchaseAdded = MutableLiveData<Boolean>()
+    private var _networkSuccess = MutableLiveData<Boolean>()
 
     fun setSelectedDepot(depot: Depot) {
         _selectedDepot.value = depot
     }
 
-    fun addPurchase(title : String) {
+    fun addPurchase(title: String) {
         viewModelScope.launch(Dispatchers.IO) {
 
-            val purchase = Purchase(
-                0, title, 1.0, 0.0,
-                "2012", 0.0, _selectedDepot.value!!.id
-            )
-            Log.i("TEST", purchase.titleOfShare)
+            try {
+                val purchase = Purchase(
+                    0, title, 1.0, 0.0,
+                    "2012", 0.0, _selectedDepot.value!!.id
+                )
 
-            purchaseRepo.addPurchase(purchase)
+                purchaseRepo.addPurchase(purchase)
+                _purchaseAdded.postValue(true)
+            } catch (e: Exception) {
+
+                _purchaseAdded.postValue(false)
+                Log.i("TEST", e.toString())
+            }
         }
     }
 
@@ -69,11 +83,15 @@ class PurchaseViewModel(
 
     fun getTitleBySymbol(symbol: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val title = shareRepo.getTitleBySymbol(symbol).toString()
 
-            _title.postValue(title)
-
-            Log.i("TEST", _title.value.toString())
+            try {
+                val title = shareRepo.getTitleBySymbol(symbol)
+                _title.postValue(title)
+                _networkSuccess.postValue(true)
+            } catch (e: Exception) {
+                _networkSuccess.postValue(false)
+                Log.i("TEST", e.toString())
+            }
         }
     }
 }

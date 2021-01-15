@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.example.android.depotapp.R
 import com.example.android.depotapp.model.Depot
 import kotlinx.android.synthetic.main.activity_add_share.*
@@ -32,7 +33,8 @@ class PurchaseActivity : AppCompatActivity() {
 
         getSelectedDepotFromIntent()
         initOnClick()
-
+        observeUserInput()
+        observePurchaseEntry()
     }
 
     private fun getSelectedDepotFromIntent() {
@@ -50,16 +52,49 @@ class PurchaseActivity : AppCompatActivity() {
             val userInput = add_share_symbol_et.text.toString()
             val symbol = userInput.toUpperCase(Locale.ROOT)
 
-
             viewModel.getTitleBySymbol(symbol)
-
-            viewModel.title.observe(this, { title ->
-                if (title != null) {
-                    viewModel.addPurchase(title)
-                }else{
-                    Log.i("TEST", "add share error")
-                }
-            })
         }
     }
+
+    private fun observeUserInput(){
+        viewModel.title.observe(this, { title ->
+            if (title != null) {
+                viewModel.addPurchase(title)
+            }else{
+                Log.i("TEST", "add share error")
+            }
+        })
+    }
+
+    private fun observePurchaseEntry(){
+        viewModel.networkSuccess.observe(this, { networkSuccess ->
+            if (networkSuccess) {
+                finish()
+            } else {
+                Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
