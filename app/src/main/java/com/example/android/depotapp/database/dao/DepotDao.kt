@@ -2,7 +2,6 @@ package com.example.android.depotapp.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.android.depotapp.database.entities.DepotWithPurchases
 import com.example.android.depotapp.database.entities.DepotDatabaseItem
 
 @Dao
