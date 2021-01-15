@@ -6,8 +6,6 @@ m
 †
 Vapp/src/main/java/com/example/android/depotapp/ui/selectoption/SelectOptionActivity.kt,4\7\47872de0861cf019fddf294be3ec4581fdbdedd2
 ~
-Napp/src/main/java/com/example/android/depotapp/ui/addshare/AddShareActivity.kt,b\7\b76933dbfc5f5c4a8dbc65c894ce0d3485ef3ed1
-~
 Napp/src/main/java/com/example/android/depotapp/ui/adddepot/AddDepotActivity.kt,b\3\b3d4b5de920e9e56d08e673026b97b3698d71b84
 ˆ
 Xapp/src/main/java/com/example/android/depotapp/ui/depotoverview/DepotOverviewActivity.kt,3\e\3e4fe56d3a053ee0f2523e3930e89ec9558580e8
@@ -90,3 +88,11 @@ Japp/src/main/java/com/example/android/depotapp/database/dao/PurchaseDao.kt,5\a
 Oapp/src/main/java/com/example/android/depotapp/ui/addshare/PurchaseViewModel.kt,4\6\46b66093910781997f2c836b485f61666ed27382
 ~
 Napp/src/main/java/com/example/android/depotapp/ui/addshare/PurchaseActivity.kt,c\8\c801a2cedd4bcfe4ba5d0e4960102af0c9b5db6a
+ƒ
+Sapp/src/main/java/com/example/android/depotapp/ui/depotoverview/ShareListAdapter.kt,2\d\2d778a21f4967fe798040a82704e06ff7563a7bb
+v
+Fapp/src/main/java/com/example/android/depotapp/network/ShareDetails.kt,9\f\9f312ea1774b7562ef4ee6a11829da42ced5e373
+
+Oapp/src/main/java/com/example/android/depotapp/ui/addshare/AddShareViewModel.kt,a\f\af3d99b770f87a1081ec2c87f1e85ef2725a1a22
+~
+Napp/src/main/java/com/example/android/depotapp/ui/addshare/AddShareActivity.kt,b\7\b76933dbfc5f5c4a8dbc65c894ce0d3485ef3ed1

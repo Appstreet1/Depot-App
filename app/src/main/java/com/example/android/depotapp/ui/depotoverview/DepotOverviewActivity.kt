@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import com.example.android.depotapp.R
 import com.example.android.depotapp.model.Depot
-import com.example.android.depotapp.ui.addshare.PurchaseActivity
+import com.example.android.depotapp.ui.addshare.AddShareActivity
 import kotlinx.android.synthetic.main.activity_depot_overview.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.lang.Exception
@@ -33,9 +33,11 @@ class DepotOverviewActivity : AppCompatActivity() {
 
         getSelectedDepotFromIntent()
         initOnClick()
-        observePurchases()
+        observeShares()
+    }
 
-        viewModel.getPurchasesByDepotId()
+    override fun onResume() {
+        super.onResume()
     }
 
     private fun getSelectedDepotFromIntent() {
@@ -45,22 +47,29 @@ class DepotOverviewActivity : AppCompatActivity() {
         }
     }
 
-    private fun initOnClick(){
+    private fun initOnClick() {
         overview_add_share.setOnClickListener {
-            PurchaseActivity.start(this, viewModel.selectedDepot.value!!)
+            AddShareActivity.start(this, viewModel.selectedDepot.value!!)
         }
     }
 
-    private fun observePurchases() {
-        viewModel.purchases.observe(this, { purchases ->
-            try {
-                for (i in purchases){
-                    Log.i("TEST", i.titleOfShare + " " + i.depotId + " " + i.purchaseId)
-                }
+    private fun observeShares() {
+        viewModel.getShares().observe(this, { shares ->
 
-            }catch (e:Exception){
-                Log.i("TEST", "no purchases brother")
+            val filter = shares.filter { it.depotId == viewModel.selectedDepot.value!!.id }
+
+            for (share in filter) {
+                Log.i("TEST", share.symbol.toString() + " - > symbol")
+
             }
         })
     }
 }
+
+
+
+
+
+
+
+

@@ -1,6 +1,5 @@
 package com.example.android.depotapp.model
 
-import com.example.android.depotapp.database.entities.DepotDatabaseItem
 import com.example.android.depotapp.database.entities.ShareDatabaseItem
 
 class Share(
@@ -9,16 +8,20 @@ class Share(
     val title: String?,
     val price: Double?,
     val date: String?,
-    val purchaseId: Long
+    val amount: Double?,
+    val totalValue: Double?,
+    var depotId: Long
 )
 
 fun Share.parseToDatabasemodel(): ShareDatabaseItem {
     return ShareDatabaseItem(
-        shareId = id,
+        id = id,
         title = title,
         date = date,
         price = price,
         symbol = symbol,
-        purchaseId = purchaseId
+        depotId = depotId,
+        amount = amount,
+        totalValue = totalValue
     )
 }

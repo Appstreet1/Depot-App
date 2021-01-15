@@ -7,14 +7,12 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.android.depotapp.database.converter.DateTypeConverter
 import com.example.android.depotapp.database.dao.DepotDao
-import com.example.android.depotapp.database.dao.PurchaseDao
 import com.example.android.depotapp.database.dao.ShareDao
 import com.example.android.depotapp.database.entities.DepotDatabaseItem
-import com.example.android.depotapp.database.entities.PurchaseDatabaseItem
 import com.example.android.depotapp.database.entities.ShareDatabaseItem
 
 @Database(
-    entities = [DepotDatabaseItem::class, ShareDatabaseItem::class, PurchaseDatabaseItem::class],
+    entities = [DepotDatabaseItem::class, ShareDatabaseItem::class],
     version = 1, exportSchema = false
 )
 
@@ -22,7 +20,6 @@ import com.example.android.depotapp.database.entities.ShareDatabaseItem
 abstract class DepotDatabase : RoomDatabase() {
     abstract val depotDao: DepotDao
     abstract val shareDao: ShareDao
-    abstract val purchaseDao: PurchaseDao
 
     companion object {
         private lateinit var INSTANCE: DepotDatabase

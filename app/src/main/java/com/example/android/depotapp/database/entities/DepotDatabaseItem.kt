@@ -3,7 +3,6 @@ package com.example.android.depotapp.database.entities
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.android.depotapp.model.Depot
-import com.example.android.depotapp.model.Purchase
 
 import java.util.*
 
