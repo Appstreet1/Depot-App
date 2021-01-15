@@ -22,19 +22,23 @@ data class ShareDTO(
 fun ShareDTO.parseToDomainModel() = Share(
     id = 0,
     symbol = symbol,
-    title = symbol,
+    title = "",
     price = price,
     date = date,
-    purchaseId = 0
+    amount = null,
+    totalValue = null,
+    depotId = 0
 )
 
 fun ShareDTO.parseToDatabaseModel() = ShareDatabaseItem(
-    shareId = 0,
+    id = 0,
     symbol = symbol,
     title = symbol,
     price = price,
     date = date,
-    purchaseId = 0
+    amount = null,
+    totalValue = null,
+    depotId = 0
 )
 
 

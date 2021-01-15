@@ -24,6 +24,7 @@ class ShareRepository(private val dao: ShareDao) {
             val share = StockApi.retrofitService.getShare(symbol, date, API_KEY)
 
             share.parseToDomainModel()
+
             NetworkResult.Success(share)
         } catch (e: Exception) {
 
@@ -36,7 +37,6 @@ class ShareRepository(private val dao: ShareDao) {
     }
 
     suspend fun getTitleBySymbol(symbol: String): String {
-
         return StockApi.retrofitService.getShareTitleBySymbol(symbol, API_KEY).title
     }
 

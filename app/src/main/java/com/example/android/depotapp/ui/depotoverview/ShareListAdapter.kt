@@ -5,17 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.depotapp.R
-import com.example.android.depotapp.model.Depot
-import com.example.android.depotapp.model.Purchase
-import kotlinx.android.synthetic.main.depot_list_item.view.*
-import kotlinx.android.synthetic.main.purchase_list_item.view.*
+import com.example.android.depotapp.model.Share
 
-class PurchaseListAdapter(private val purchases: ArrayList<Purchase> = ArrayList()
-) : RecyclerView.Adapter<PurchaseListAdapter.PurchaseViewHolder>() {
+class ShareListAdapter(
+    private val purchases: ArrayList<Share> = ArrayList()
+) : RecyclerView.Adapter<ShareListAdapter.PurchaseViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PurchaseViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.purchase_list_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.share_list_item, parent, false)
         return PurchaseViewHolder(view)
     }
 
@@ -28,18 +26,16 @@ class PurchaseListAdapter(private val purchases: ArrayList<Purchase> = ArrayList
     }
 
     class PurchaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun update(purchase: Purchase) = with(itemView) {
+        fun update(share: Share) = with(itemView) {
 
-            list_purchase_title.text = purchase.titleOfShare
-            list_purchase_date.text = purchase.dateOfPurchase
 
         }
     }
 
     //TODO:implement Diffutilcallback
-    fun setData(list: List<Purchase>){
+    fun setData(list: List<Share>) {
         purchases.clear()
         purchases.addAll(list)
-            notifyDataSetChanged()
+        notifyDataSetChanged()
     }
 }

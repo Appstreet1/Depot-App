@@ -8,16 +8,20 @@ class Share(
     val title: String?,
     val price: Double?,
     val date: String?,
-    val purchaseId: Long
+    val amount: Double?,
+    val totalValue: Double?,
+    val depotId: Long
 )
 
 fun Share.parseToDatabasemodel(): ShareDatabaseItem {
     return ShareDatabaseItem(
-        shareId = id,
+        id = id,
         title = title,
         date = date,
         price = price,
         symbol = symbol,
-        purchaseId = purchaseId
+        depotId = depotId,
+        amount = amount,
+        totalValue = totalValue
     )
 }

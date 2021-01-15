@@ -2,9 +2,10 @@ package com.example.android.depotapp.ui.depotoverview
 
 import androidx.lifecycle.*
 import com.example.android.depotapp.model.Depot
-import com.example.android.depotapp.model.Purchase
 import com.example.android.depotapp.repository.depot.DepotRepository
 import com.example.android.depotapp.repository.share.ShareRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class DepotOverviewViewModel(
     private val shareRepo: ShareRepository,
@@ -16,14 +17,18 @@ class DepotOverviewViewModel(
     val selectedDepot: LiveData<Depot>
         get() = _selectedDepot
 
-    val purchases: LiveData<List<Purchase>>
-        get() = _purchasesOfDepot
-
     private val _selectedDepot = MutableLiveData<Depot>()
-    private val _purchasesOfDepot = MutableLiveData<List<Purchase>>()
 
 
     fun setSelectedDepot(depot: Depot) {
         _selectedDepot.value = depot
+    }
+
+    fun requestShare(symbol:String, date: String){
+
+        viewModelScope.launch(Dispatchers.IO) {
+            shareRepo.requestShareBySymbolAndDate(symbol, date)
+        }
+
     }
 }
