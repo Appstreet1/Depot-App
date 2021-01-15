@@ -39,8 +39,6 @@ class DepotRepository(private val dao: DepotDao) {
         }
     }
 
-
-
     suspend fun deleteAllDepots() {
         withContext(Dispatchers.IO) {
             dao.deleteAllDepots()

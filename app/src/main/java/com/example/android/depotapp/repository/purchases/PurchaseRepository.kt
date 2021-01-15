@@ -1,13 +1,9 @@
 package com.example.android.depotapp.repository.purchases
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import com.example.android.depotapp.database.dao.PurchaseDao
 import com.example.android.depotapp.database.entities.PurchaseDatabaseItem
-import com.example.android.depotapp.database.entities.parseToDatabaseModel
 import com.example.android.depotapp.database.entities.parseToDomainModel
 import com.example.android.depotapp.model.Purchase
-import com.example.android.depotapp.model.Share
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -33,11 +29,8 @@ class PurchaseRepository(private val dao: PurchaseDao) {
         }
     }
 
-    suspend fun deletePurchase(purchase: PurchaseDatabaseItem) {
-        dao.deletePurchase(purchase)
+    suspend fun getLastPurchase(): Purchase {
+        return dao.getLastInsertedPurchase().parseToDomainModel()
     }
 
-    suspend fun deleteAllPurchases() {
-        dao.deleteAllPurchases()
-    }
 }

@@ -33,8 +33,8 @@ fun List<PurchaseDatabaseItem>.parseToDomainModel(): List<Unit> {
     }
 }
 
-fun Purchase.parseToDatabaseModel(): PurchaseDatabaseItem {
-    return PurchaseDatabaseItem(
+fun PurchaseDatabaseItem.parseToDomainModel(): Purchase {
+    return Purchase(
         purchaseId = purchaseId,
         titleOfShare = titleOfShare,
         amountOfShares = amountOfShares,

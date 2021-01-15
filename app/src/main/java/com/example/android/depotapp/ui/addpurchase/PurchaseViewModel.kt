@@ -33,6 +33,7 @@ class PurchaseViewModel(
 
     private val _share = MutableLiveData<Share>()
     private val _selectedDepot = MutableLiveData<Depot>()
+    private var _lastPurchaseId: Long? = null
     private var _title = MutableLiveData<String>()
     private var _shareIsValid = MutableLiveData<Boolean>()
     private var depotId: Long = 0
@@ -78,10 +79,11 @@ class PurchaseViewModel(
             try {
                 val purchase = PurchaseDatabaseItem(
                     0, _title.value.toString(), amount, 0.0,
-                    date, 0.0, depotId, 0 )
+                    date, 0.0, depotId, 0
+                )
 
                 purchaseRepo.addPurchase(purchase)
-                addShareToPurchase(purchase.purchaseId)
+                addShareToPurchase()
 
             } catch (e: Exception) {
 
@@ -90,12 +92,25 @@ class PurchaseViewModel(
         }
     }
 
-    private fun addShareToPurchase(purchaseId: Long) {
+    private fun addShareToPurchase() {
+
         viewModelScope.launch(Dispatchers.IO) {
+
             _share.value?.apply {
-                val share = Share(id, symbol, title, price, date, purchaseId)
+                val share = Share(id, symbol, title, price, date, _lastPurchaseId!!)
                 shareRepo.addShare(share)
             }
+        }
+    }
+
+    private fun getLastPurchase() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val lastPurchase = purchaseRepo.getLastPurchase()
+           var lastPurchaseId = lastPurchase.purchaseId
+
+           _lastPurchaseId = lastPurchaseId++
+
+            Log.i("TEST", _lastPurchaseId.toString())
         }
     }
 }
