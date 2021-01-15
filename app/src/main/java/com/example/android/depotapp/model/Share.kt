@@ -10,7 +10,7 @@ class Share(
     val date: String?,
     val amount: Double?,
     val totalValue: Double?,
-    val depotId: Long
+    var depotId: Long
 )
 
 fun Share.parseToDatabasemodel(): ShareDatabaseItem {

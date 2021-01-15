@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.addpurchase.PurchaseActivity">
+    tools:context=".ui.addshare.AddShareActivity">
 
     <EditText
-        android:id="@+id/purchase_symbol_et"
+        android:id="@+id/addsh_symbol_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="108dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/purchase_add_btn"
+        android:id="@+id/add_sh_add_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="75dp"
@@ -32,7 +32,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/purchase_amount"
+        android:id="@+id/add_sh_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -47,7 +47,7 @@
         app:layout_constraintVertical_bias="0.262" />
 
     <EditText
-        android:id="@+id/purchase_date"
+        android:id="@+id/add_sh_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"

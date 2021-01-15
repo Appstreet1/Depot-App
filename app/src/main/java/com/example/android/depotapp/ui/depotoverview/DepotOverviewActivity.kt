@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import com.example.android.depotapp.R
 import com.example.android.depotapp.model.Depot
+import com.example.android.depotapp.ui.addshare.AddShareActivity
 import kotlinx.android.synthetic.main.activity_depot_overview.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.lang.Exception
@@ -32,6 +33,7 @@ class DepotOverviewActivity : AppCompatActivity() {
 
         getSelectedDepotFromIntent()
         initOnClick()
+        observeShares()
     }
 
     override fun onResume() {
@@ -47,7 +49,20 @@ class DepotOverviewActivity : AppCompatActivity() {
 
     private fun initOnClick() {
         overview_add_share.setOnClickListener {
+            AddShareActivity.start(this, viewModel.selectedDepot.value!!)
         }
+    }
+
+    private fun observeShares() {
+        viewModel.getShares().observe(this, { shares ->
+
+            val filter = shares.filter { it.depotId == viewModel.selectedDepot.value!!.id }
+
+            for (share in filter) {
+                Log.i("TEST", share.symbol.toString() + " - > symbol")
+
+            }
+        })
     }
 }
 
