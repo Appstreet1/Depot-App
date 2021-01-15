@@ -34,7 +34,10 @@ class DepotOverviewActivity : AppCompatActivity() {
         getSelectedDepotFromIntent()
         initOnClick()
         observePurchases()
+    }
 
+    override fun onResume() {
+        super.onResume()
         viewModel.getPurchasesByDepotId()
     }
 
@@ -55,7 +58,7 @@ class DepotOverviewActivity : AppCompatActivity() {
         viewModel.purchases.observe(this, { purchases ->
             try {
                 for (i in purchases){
-                    Log.i("TEST", i.titleOfShare + " depotId: " + i.depotId + " purchaseId: " + i.purchaseId)
+                    Log.i("TEST", i.titleOfShare + " depotId: " + i.depotId + " purchaseId: " + i.purchaseId + " amount: " + i.amountOfShares + " date: " + i.dateOfPurchase)
                 }
             }catch (e:Exception){
                 Log.i("TEST", "no purchases brother")
@@ -63,3 +66,11 @@ class DepotOverviewActivity : AppCompatActivity() {
         })
     }
 }
+
+
+
+
+
+
+
+

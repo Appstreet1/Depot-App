@@ -17,8 +17,8 @@ interface DepotDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(vararg depots: DepotDatabaseItem)
 
-//    @Query("SELECT * FROM depots ")
-//    fun getDepotById(id : Long) : DepotDatabaseItem
+    @Query("SELECT * FROM depots WHERE id=:id")
+    fun getDepotById(id : Long) : DepotDatabaseItem
 
     @Update
     suspend fun updateDepot(depot: DepotDatabaseItem)

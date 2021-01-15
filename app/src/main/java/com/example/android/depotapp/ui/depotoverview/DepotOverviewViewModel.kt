@@ -1,10 +1,7 @@
 package com.example.android.depotapp.ui.depotoverview
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.android.depotapp.database.entities.DepotWithPurchases
 import com.example.android.depotapp.model.Depot
 import com.example.android.depotapp.model.Purchase
@@ -32,6 +29,7 @@ class DepotOverviewViewModel(
 
     private val _selectedDepot = MutableLiveData<Depot>()
     private val _purchasesOfDepot = MutableLiveData<List<Purchase>>()
+
 
     fun setSelectedDepot(depot: Depot) {
         _selectedDepot.value = depot

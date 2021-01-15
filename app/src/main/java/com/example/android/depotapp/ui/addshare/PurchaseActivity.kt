@@ -8,9 +8,8 @@ import android.util.Log
 import android.widget.Toast
 import com.example.android.depotapp.R
 import com.example.android.depotapp.model.Depot
-import kotlinx.android.synthetic.main.activity_add_share.*
+import kotlinx.android.synthetic.main.activity_purchase.*
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.util.*
 
 class PurchaseActivity : AppCompatActivity() {
 
@@ -29,11 +28,11 @@ class PurchaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_share)
+        setContentView(R.layout.activity_purchase)
 
         getSelectedDepotFromIntent()
         initOnClick()
-        observeUserInput()
+        observeShareRequest()
         observePurchaseEntry()
     }
 
@@ -41,25 +40,28 @@ class PurchaseActivity : AppCompatActivity() {
         val depot: Depot? = intent.getParcelableExtra("depot_arg")
         if (depot != null) {
             viewModel.setSelectedDepot(depot)
-            Log.i("TEST", depot.toString())
         }
     }
 
 
     //TODO: Add purchase with date, amount, price, shares etc..
     private fun initOnClick() {
-        add_share_btn.setOnClickListener {
-            val userInput = add_share_symbol_et.text.toString()
-            val symbol = userInput.toUpperCase(Locale.ROOT)
+        purchase_add_btn.setOnClickListener {
+            val symbol = purchase_symbol_et.text.toString()
+            val date = purchase_date.text.toString()
 
-            viewModel.getTitleBySymbol(symbol)
+            viewModel.requestShareBySymbolAndDate(symbol,date)
         }
     }
 
-    private fun observeUserInput(){
+    private fun observeShareRequest(){
         viewModel.title.observe(this, { title ->
             if (title != null) {
-                viewModel.addPurchase(title)
+
+                val amount = purchase_amount.text.toString().toDouble()
+                val date = purchase_date.text.toString()
+
+                viewModel.addPurchase(title, amount, date)
             }else{
                 Log.i("TEST", "add share error")
             }
