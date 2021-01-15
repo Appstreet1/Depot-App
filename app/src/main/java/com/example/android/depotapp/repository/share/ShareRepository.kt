@@ -19,10 +19,6 @@ class ShareRepository(private val dao: ShareDao) {
         it.parseToDomainModel()
     }
 
-    suspend fun deleteAll() {
-        dao.deleteAllShares()
-    }
-
     suspend fun requestShareBySymbolAndDate(symbol: String, date: String): NetworkResult {
         return try {
             val share = StockApi.retrofitService.getShare(symbol, date, API_KEY)

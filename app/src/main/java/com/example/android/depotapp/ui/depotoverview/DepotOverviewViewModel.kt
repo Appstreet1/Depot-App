@@ -40,15 +40,4 @@ class DepotOverviewViewModel(
             _purchasesOfDepot.postValue(purchaseRepo.getPurchasesByDepotId(_selectedDepot.value!!.id))
         }
     }
-
-
-
-    fun deleteDepot(depot: Depot?) {
-        viewModelScope.launch(Dispatchers.IO) {
-            if (depot != null) {
-                depotRepo.deleteDepot(depot)
-            }
-        }
-    }
-
 }

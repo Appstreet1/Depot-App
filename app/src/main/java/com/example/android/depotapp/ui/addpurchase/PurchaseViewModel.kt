@@ -48,11 +48,13 @@ class PurchaseViewModel(
         viewModelScope.launch(Dispatchers.IO) {
 
             when (shareRepo.requestShareBySymbolAndDate(symbol, date)) {
-                is NetworkResult.Success -> {
+                is NetworkResult.Success ->
+                {
                     _share.postValue(shareRepo.getShareBySymbolAndDate(symbol, date))
                     requestTitleBySymbol(symbol)
                 }
-                is NetworkResult.Error -> _shareIsValid.postValue(false)
+                is NetworkResult.Error ->
+                    _shareIsValid.postValue(false)
             }
         }
     }
@@ -74,28 +76,26 @@ class PurchaseViewModel(
     }
 
     fun addPurchase(amount: Double, date: String) {
+
+        val purchase = PurchaseDatabaseItem(
+            0, _title.value.toString(), amount, 0.0,
+            date, 0.0, depotId, 0
+        )
+
         viewModelScope.launch(Dispatchers.IO) {
 
             try {
-                val purchase = PurchaseDatabaseItem(
-                    0, _title.value.toString(), amount, 0.0,
-                    date, 0.0, depotId, 0
-                )
-
                 purchaseRepo.addPurchase(purchase)
                 addShareToPurchase()
 
             } catch (e: Exception) {
-
                 Log.i("TEST", e.toString())
             }
         }
     }
 
     private fun addShareToPurchase() {
-
         viewModelScope.launch(Dispatchers.IO) {
-
             _share.value?.apply {
                 val share = Share(id, symbol, title, price, date, _lastPurchaseId!!)
                 shareRepo.addShare(share)

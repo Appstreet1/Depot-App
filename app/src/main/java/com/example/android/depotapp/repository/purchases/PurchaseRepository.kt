@@ -12,15 +12,9 @@ class PurchaseRepository(private val dao: PurchaseDao) {
 
     val purchases = dao.getPurchases()
 
-
-    suspend fun getPurchases() {
-        dao.getPurchases()
-    }
-
     suspend fun getPurchasesByDepotId(depotId: Long): List<Purchase> {
         return dao.getPurchasesByDepotId(depotId)
     }
-
 
     suspend fun addPurchase(purchase: PurchaseDatabaseItem) {
 
@@ -32,5 +26,4 @@ class PurchaseRepository(private val dao: PurchaseDao) {
     suspend fun getLastPurchase(): Purchase {
         return dao.getLastInsertedPurchase().parseToDomainModel()
     }
-
 }

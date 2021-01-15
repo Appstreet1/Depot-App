@@ -44,8 +44,6 @@ class PurchaseActivity : AppCompatActivity() {
         }
     }
 
-
-    //TODO: Add purchase with date, amount, price, shares etc..
     private fun initOnClick() {
         purchase_add_btn.setOnClickListener {
             val symbol = purchase_symbol_et.text.toString().toUpperCase(Locale.ROOT)

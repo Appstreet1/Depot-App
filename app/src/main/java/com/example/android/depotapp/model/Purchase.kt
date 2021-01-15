@@ -1,8 +1,6 @@
 package com.example.android.depotapp.model
 
 import com.example.android.depotapp.database.entities.PurchaseDatabaseItem
-import com.example.android.depotapp.database.entities.ShareDatabaseItem
-import java.util.*
 
 class Purchase(
     val purchaseId: Long,
