@@ -12,8 +12,9 @@ interface ShareDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg shares: ShareDatabaseItem)
 
+    @Query("SELECT * FROM shares WHERE purchaseId=:id")
+    fun getShareByPurchaseId(id : Long) : ShareDatabaseItem
 
-    //Test
     @Delete
     fun deleteShare(share: ShareDatabaseItem)
 
@@ -22,5 +23,4 @@ interface ShareDao {
 
     @Insert
     fun addShare(share: ShareDatabaseItem)
-
 }

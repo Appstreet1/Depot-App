@@ -41,6 +41,8 @@ class DepotOverviewViewModel(
         }
     }
 
+
+
     fun deleteDepot(depot: Depot?) {
         viewModelScope.launch(Dispatchers.IO) {
             if (depot != null) {

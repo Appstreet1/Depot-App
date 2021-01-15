@@ -10,6 +10,7 @@ import com.example.android.depotapp.R
 import com.example.android.depotapp.model.Depot
 import kotlinx.android.synthetic.main.activity_purchase.*
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.util.*
 
 class PurchaseActivity : AppCompatActivity() {
 
@@ -32,8 +33,7 @@ class PurchaseActivity : AppCompatActivity() {
 
         getSelectedDepotFromIntent()
         initOnClick()
-        observeShareRequest()
-        observePurchaseEntry()
+        observeStatus()
     }
 
     private fun getSelectedDepotFromIntent() {
@@ -47,38 +47,30 @@ class PurchaseActivity : AppCompatActivity() {
     //TODO: Add purchase with date, amount, price, shares etc..
     private fun initOnClick() {
         purchase_add_btn.setOnClickListener {
-            val symbol = purchase_symbol_et.text.toString()
+            val symbol = purchase_symbol_et.text.toString().toUpperCase(Locale.ROOT)
             val date = purchase_date.text.toString()
 
             viewModel.requestShareBySymbolAndDate(symbol,date)
         }
     }
 
-    private fun observeShareRequest(){
-        viewModel.title.observe(this, { title ->
-            if (title != null) {
+    private fun observeStatus(){
+        viewModel.shareIsValid.observe(this, { shareIsValid ->
+            if (shareIsValid) {
 
                 val amount = purchase_amount.text.toString().toDouble()
                 val date = purchase_date.text.toString()
 
-                viewModel.addPurchase(title, amount, date)
-            }else{
-                Log.i("TEST", "add share error")
-            }
-        })
-    }
+                viewModel.addPurchase(amount, date)
 
-    private fun observePurchaseEntry(){
-        viewModel.networkSuccess.observe(this, { networkSuccess ->
-            if (networkSuccess) {
                 finish()
+
             } else {
                 Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()
             }
         })
     }
 }
-
 
 
 

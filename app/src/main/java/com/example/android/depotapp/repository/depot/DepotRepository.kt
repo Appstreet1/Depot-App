@@ -23,9 +23,9 @@ class DepotRepository(private val dao: DepotDao) {
         }
     }
 
-    suspend fun getDepotWithPurchases(depotId : Long) : DepotWithPurchases {
-        return dao.getDepotsWithPurchases(depotId)
-    }
+//    suspend fun getDepotWithPurchases(depotId : Long) : DepotWithPurchases {
+//        return dao.getDepotsWithPurchases(depotId)
+//    }
 
     suspend fun updateDepot(depot: DepotDatabaseItem) {
         withContext(Dispatchers.IO) {

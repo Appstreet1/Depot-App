@@ -36,7 +36,6 @@ class ShareRepository(private val dao: ShareDao) {
     }
 
     suspend fun getShareBySymbolAndDate(symbol: String, date: String): Share {
-
         return StockApi.retrofitService.getShare(symbol, date, API_KEY).parseToDomainModel()
     }
 

@@ -26,17 +26,13 @@ class PurchaseViewModel(
     val title: LiveData<String>
         get() = _title
 
-    val purchaseAdded: LiveData<Boolean>
-        get() = _purchaseAdded
-
-    val networkSuccess: LiveData<Boolean>
-        get() = _networkSuccess
+    val shareIsValid: LiveData<Boolean>
+        get() = _shareIsValid
 
     private val _share = MutableLiveData<Share>()
     private val _selectedDepot = MutableLiveData<Depot>()
     private var _title = MutableLiveData<String>()
-    private var _purchaseAdded = MutableLiveData<Boolean>()
-    private var _networkSuccess = MutableLiveData<Boolean>()
+    private var _shareIsValid = MutableLiveData<Boolean>()
     private var depotId: Long = 0
 
 
@@ -45,57 +41,84 @@ class PurchaseViewModel(
         depotId = _selectedDepot.value!!.id
     }
 
-
-    fun addPurchase(title: String, amount: Double, date: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-
-            try {
-                val purchase = Purchase(
-                    0, title, amount, 0.0,
-                    date, 0.0, depotId
-                )
-
-                purchaseRepo.addPurchase(purchase)
-                _purchaseAdded.postValue(true)
-            } catch (e: Exception) {
-
-                _purchaseAdded.postValue(false)
-                Log.i("TEST", e.toString())
-            }
-        }
-    }
-
-    private fun requestTitleBySymbol(symbolInput: String) {
-
-        val symbol = symbolInput.toUpperCase(Locale.ROOT)
-
-        viewModelScope.launch(Dispatchers.IO) {
-
-            try {
-                val title = shareRepo.getTitleBySymbol(symbol)
-                _title.postValue(title)
-
-            } catch (e: Exception) {
-
-                Log.i("TEST", e.toString())
-            }
-        }
-    }
-
-    fun addShareToPurchase() {
-        viewModelScope.launch(Dispatchers.IO) {
-        }
-    }
-
-     fun requestShareBySymbolAndDate(symbol: String, date: String) {
+    fun requestShareBySymbolAndDate(symbol: String, date: String) {
         viewModelScope.launch(Dispatchers.IO) {
 
             when (shareRepo.requestShareBySymbolAndDate(symbol, date)) {
                 is NetworkResult.Success -> {
+                    val share = shareRepo.getShareBySymbolAndDate(symbol, date)
+                    addShareToPurchase(share)
                     requestTitleBySymbol(symbol)
                 }
-                is NetworkResult.Error -> _networkSuccess.postValue(false)
+                is NetworkResult.Error -> _shareIsValid.postValue(false)
             }
         }
     }
+
+    private fun requestTitleBySymbol(symbol: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val title = shareRepo.getTitleBySymbol(symbol)
+
+                _title.postValue(title)
+
+                _shareIsValid.postValue(true)
+
+            } catch (e: Exception) {
+                _shareIsValid.postValue(false)
+                Log.i("TEST", e.toString())
+            }
+        }
+    }
+
+    fun addPurchase(amount: Double, date: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+
+            try {
+                val purchase = Purchase(
+                    0, _title.value.toString(), amount, 0.0,
+                    date, 0.0, depotId
+                )
+
+                purchaseRepo.addPurchase(purchase)
+
+            } catch (e: Exception) {
+
+                Log.i("TEST", e.toString())
+            }
+        }
+    }
+
+    private fun addShareToPurchase(share: Share) {
+        viewModelScope.launch(Dispatchers.IO) {
+
+            Log.i(
+                "TEST",
+                "symbol: " + share.symbol + " date " + share.date +
+                        " price: " + share.price + "purchaseId: " + share.purchaseId + " title " + share.title
+            )
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
