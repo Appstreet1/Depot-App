@@ -5,6 +5,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.depotapp.R
 import com.example.android.depotapp.model.Depot
 import com.example.android.depotapp.ui.addshare.AddShareActivity
@@ -14,18 +16,10 @@ import java.lang.Exception
 
 class DepotOverviewActivity : AppCompatActivity() {
 
-    companion object {
-        fun start(context: Context, depot: Depot) {
-            val intent = Intent(context, DepotOverviewActivity::class.java)
-
-            depot.run {
-                intent.putExtra("depot_arg", depot)
-            }
-            context.startActivity(intent)
-        }
-    }
 
     private val viewModel by viewModel<DepotOverviewViewModel>()
+    private lateinit var listAdapter: ShareListAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,10 +28,8 @@ class DepotOverviewActivity : AppCompatActivity() {
         getSelectedDepotFromIntent()
         initOnClick()
         observeShares()
-    }
-
-    override fun onResume() {
-        super.onResume()
+        initRecyclerView()
+        lifecycle.addObserver(viewModel)
     }
 
     private fun getSelectedDepotFromIntent() {
@@ -54,15 +46,33 @@ class DepotOverviewActivity : AppCompatActivity() {
     }
 
     private fun observeShares() {
-        viewModel.getShares().observe(this, { shares ->
-
-            val filter = shares.filter { it.depotId == viewModel.selectedDepot.value!!.id }
-
-            for (share in filter) {
-                Log.i("TEST", share.symbol.toString() + " - > symbol")
-
+        viewModel.shares.observe(this, { shares ->
+            shares?.let {
+                listAdapter.setData(shares)
             }
         })
+    }
+
+    private fun initRecyclerView() {
+        listAdapter = ShareListAdapter()
+
+        overview_recyclerview.apply {
+            layoutManager = LinearLayoutManager(this.context)
+            itemAnimator = DefaultItemAnimator()
+            adapter = listAdapter
+        }
+
+    }
+
+    companion object {
+        fun start(context: Context, depot: Depot) {
+            val intent = Intent(context, DepotOverviewActivity::class.java)
+
+            depot.run {
+                intent.putExtra("depot_arg", depot)
+            }
+            context.startActivity(intent)
+        }
     }
 }
 

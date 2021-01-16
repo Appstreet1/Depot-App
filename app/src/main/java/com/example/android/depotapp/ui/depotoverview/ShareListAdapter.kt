@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.depotapp.R
 import com.example.android.depotapp.model.Share
+import com.example.android.depotapp.ui.detailShare.ShareDetailActivity
+import kotlinx.android.synthetic.main.share_list_item.view.*
 
 class ShareListAdapter(
     private val purchases: ArrayList<Share> = ArrayList()
@@ -28,7 +30,10 @@ class ShareListAdapter(
     class PurchaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun update(share: Share) = with(itemView) {
 
+            list_share_date.text = share.date
+            list_share_symbol.text = share.symbol
 
+            share_list_item.setOnClickListener { ShareDetailActivity.start(itemView.context, share) }
         }
     }
 

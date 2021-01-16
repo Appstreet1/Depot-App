@@ -10,11 +10,8 @@ data class ShareDatabaseItem constructor(
     val id: Long,
     val symbol: String?,
     val title: String?,
-    val price: Double?,
     val date: String?,
-    val amount: Double?,
-    val totalValue: Double?,
-    val depotId: Long
+    var depotId: Long
 )
 
 fun List<ShareDatabaseItem>.parseToDomainModel(): List<Share> {
@@ -23,11 +20,8 @@ fun List<ShareDatabaseItem>.parseToDomainModel(): List<Share> {
             id = it.id,
             title = it.title,
             symbol = it.symbol,
-            price = it.price,
             date = it.date,
             depotId = it.depotId,
-            amount = it.amount,
-            totalValue = it.totalValue
         )
     }
 }

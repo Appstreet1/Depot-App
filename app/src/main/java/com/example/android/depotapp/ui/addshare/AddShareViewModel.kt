@@ -10,6 +10,7 @@ import com.example.android.depotapp.repository.share.ShareRepository
 import com.example.android.depotapp.utils.NetworkResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class AddShareViewModel(private val shareRepo: ShareRepository) : ViewModel() {
 
@@ -30,23 +31,26 @@ class AddShareViewModel(private val shareRepo: ShareRepository) : ViewModel() {
     fun requestShare(symbol: String, date: String) {
         viewModelScope.launch(Dispatchers.IO) {
 
-            when (shareRepo.requestShareBySymbolAndDate(symbol, date)) {
+            when (shareRepo.requestShare(symbol, date)) {
 
-                is NetworkResult.Success -> {
-                    val share = shareRepo.getShareBySymbolAndDate(symbol,date)
-                    addShare(share)
-                    _shareAdded.postValue(true)
-                }
+                is NetworkResult.Success -> addShare(symbol, date)
                 is NetworkResult.Error -> _shareAdded.postValue(false)
             }
         }
     }
 
-    private fun addShare(share: Share) {
+    private fun addShare(symbol: String, date: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            share.depotId = _selectedDepot.value!!.id
+            try {
 
-            shareRepo.addShare(share)
+                val depotId = _selectedDepot.value!!.id
+                shareRepo.addShare(symbol, date, depotId)
+
+                _shareAdded.postValue(true)
+
+            } catch (e: Exception) {
+                _shareAdded.postValue(false)
+            }
         }
     }
 }

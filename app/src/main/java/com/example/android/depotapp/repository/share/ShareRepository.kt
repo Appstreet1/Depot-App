@@ -1,5 +1,6 @@
 package com.example.android.depotapp.repository.share
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.example.android.depotapp.database.dao.ShareDao
@@ -7,6 +8,7 @@ import com.example.android.depotapp.database.entities.parseToDomainModel
 import com.example.android.depotapp.model.Share
 import com.example.android.depotapp.model.parseToDatabasemodel
 import com.example.android.depotapp.network.StockApi
+import com.example.android.depotapp.network.parseToDatabaseModel
 import com.example.android.depotapp.network.parseToDomainModel
 import com.example.android.depotapp.utils.NetworkResult
 import com.example.android.depotapp.utils.const.API_KEY
@@ -19,9 +21,9 @@ class ShareRepository(private val dao: ShareDao) {
         it.parseToDomainModel()
     }
 
-    suspend fun requestShareBySymbolAndDate(symbol: String, date: String): NetworkResult {
+    suspend fun requestShare(symbol: String, date: String): NetworkResult {
         return try {
-            val share = StockApi.retrofitService.getShare(symbol, date, API_KEY)
+            val share = StockApi.retrofitService.getShareAsync(symbol, date, API_KEY)
 
             share.parseToDomainModel()
 
@@ -32,17 +34,41 @@ class ShareRepository(private val dao: ShareDao) {
         }
     }
 
-    suspend fun getShareBySymbolAndDate(symbol: String, date: String): Share {
-        return StockApi.retrofitService.getShare(symbol, date, API_KEY).parseToDomainModel()
-    }
-
-//    suspend fun getTitleBySymbol(symbol: String): String {
-//        return StockApi.retrofitService.getShareTitleBySymbol(symbol, API_KEY).title
-//    }
-
-    suspend fun addShare(share: Share) {
+    suspend fun addShare(symbol: String, date: String, depotId: Long) {
         withContext(Dispatchers.IO) {
-            dao.addShare(share.parseToDatabasemodel())
+
+            try {
+
+                val data = StockApi.retrofitService.getShareAsync(symbol, date, API_KEY)
+                val shareData = data.parseToDatabaseModel()
+
+                shareData.depotId = depotId
+
+                dao.addShare(shareData)
+
+            } catch (e: Exception) {
+                Log.i("TEST", e.toString())
+            }
         }
     }
+
+     fun getShares(depotId: Long): List<Share> {
+        return dao.getSharesOfDepot(depotId)
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

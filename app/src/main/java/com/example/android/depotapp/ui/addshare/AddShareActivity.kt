@@ -7,12 +7,14 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.android.depotapp.R
 import com.example.android.depotapp.model.Depot
+import com.example.android.depotapp.model.Share
 import com.example.android.depotapp.ui.depotoverview.DepotOverviewActivity
 import com.example.android.depotapp.ui.depotoverview.DepotOverviewViewModel
 import com.example.android.depotapp.utils.NetworkResult
 import kotlinx.android.synthetic.main.activity_add_share.*
 import kotlinx.android.synthetic.main.activity_depot_overview.*
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.util.*
 
 class AddShareActivity : AppCompatActivity() {
 
@@ -48,14 +50,13 @@ class AddShareActivity : AppCompatActivity() {
 
     private fun initOnClick() {
         add_sh_add_btn.setOnClickListener {
-            val symbol = addsh_symbol_et.text.toString()
-            val amount = add_sh_amount.text.toString()
+
+            val symbol = addsh_symbol_et.text.toString().toUpperCase(Locale.ROOT)
             val date = add_sh_date.text.toString()
 
             viewModel.requestShare(symbol, date)
         }
     }
-
 
     private fun observeStatus() {
         viewModel.shareAdded.observe(this, { shareAdded ->

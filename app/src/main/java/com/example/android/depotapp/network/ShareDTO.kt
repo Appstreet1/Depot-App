@@ -23,10 +23,7 @@ fun ShareDTO.parseToDomainModel() = Share(
     id = 0,
     symbol = symbol,
     title = "",
-    price = price,
     date = date,
-    amount = null,
-    totalValue = null,
     depotId = 0
 )
 
@@ -34,10 +31,7 @@ fun ShareDTO.parseToDatabaseModel() = ShareDatabaseItem(
     id = 0,
     symbol = symbol,
     title = symbol,
-    price = price,
     date = date,
-    amount = null,
-    totalValue = null,
     depotId = 0
 )
 
