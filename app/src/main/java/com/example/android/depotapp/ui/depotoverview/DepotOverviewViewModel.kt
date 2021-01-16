@@ -22,6 +22,10 @@ class DepotOverviewViewModel(
     private val _shares = MutableLiveData<List<Share>>()
 
 
+    init {
+        getSharesOfDepot()
+    }
+
     override fun onResume(owner: LifecycleOwner) {
         super.onResume(owner)
         getSharesOfDepot()

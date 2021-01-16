@@ -9,6 +9,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.depotapp.R
@@ -51,8 +52,11 @@ class DepotOverviewActivity : AppCompatActivity() {
 
     private fun observeShares() {
         viewModel.shares.observe(this, { shares ->
-            shares?.let {
+
+            if (shares.isNotEmpty()) {
                 listAdapter.setData(shares)
+            } else {
+                Toast.makeText(this, "No shares added yet!", Toast.LENGTH_SHORT).show()
             }
         })
     }

@@ -10,7 +10,7 @@ import com.example.android.depotapp.ui.detailShare.ShareDetailActivity
 import kotlinx.android.synthetic.main.share_list_item.view.*
 
 class ShareListAdapter(
-    private val purchases: ArrayList<Share> = ArrayList()
+    private val shares: ArrayList<Share> = ArrayList()
 ) : RecyclerView.Adapter<ShareListAdapter.PurchaseViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PurchaseViewHolder {
@@ -20,11 +20,11 @@ class ShareListAdapter(
     }
 
     override fun getItemCount(): Int {
-        return purchases.size
+        return shares.size
     }
 
     override fun onBindViewHolder(holder: PurchaseViewHolder, position: Int) {
-        holder.update(purchases[position])
+        holder.update(shares[position])
     }
 
     class PurchaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -37,10 +37,9 @@ class ShareListAdapter(
         }
     }
 
-    //TODO:implement Diffutilcallback
     fun setData(list: List<Share>) {
-        purchases.clear()
-        purchases.addAll(list)
+        shares.clear()
+        shares.addAll(list)
         notifyDataSetChanged()
     }
 }

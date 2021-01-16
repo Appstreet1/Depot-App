@@ -60,9 +60,11 @@ class AddShareViewModel(private val shareRepo: ShareRepository, private val app:
         viewModelScope.launch(Dispatchers.IO) {
 
             val shares = _selectedDepot.value?.id?.let { shareRepo.getShares(it) }
-            val latestShare = shares?.last()
 
-            _share.postValue(latestShare)
+            if (shares != null && shares.isNotEmpty()) {
+                val latestShare = shares.last()
+                _share.postValue(latestShare)
+            }
         }
     }
 

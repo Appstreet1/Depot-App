@@ -1,5 +1,6 @@
 package com.example.android.depotapp.ui.detailShare
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -50,9 +51,12 @@ class ShareDetailActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun renderUI() {
         viewModel.selectedShare.observe(this, { share ->
-            detail_country.text = share.country
+            detail_name.text = share.name
+            detail_employees.text = "employees: " + share.employees
+            detail_country.text = "country: " + share.country
             detail_description.text = share.description
             detail_industry.text = share.industry
             detail_sector.text = share.sector
