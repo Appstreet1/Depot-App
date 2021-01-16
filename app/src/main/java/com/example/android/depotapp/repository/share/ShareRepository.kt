@@ -1,12 +1,8 @@
 package com.example.android.depotapp.repository.share
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import com.example.android.depotapp.database.dao.ShareDao
-import com.example.android.depotapp.database.entities.parseToDomainModel
 import com.example.android.depotapp.model.Share
-import com.example.android.depotapp.model.parseToDatabasemodel
 import com.example.android.depotapp.network.StockApi
 import com.example.android.depotapp.network.parseToDatabaseModel
 import com.example.android.depotapp.network.parseToDomainModel
@@ -16,10 +12,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class ShareRepository(private val dao: ShareDao) {
-
-    val shares: LiveData<List<Share>> = Transformations.map(dao.getShares()) {
-        it.parseToDomainModel()
-    }
 
     suspend fun requestShare(symbol: String, date: String): NetworkResult {
         return try {
@@ -39,12 +31,20 @@ class ShareRepository(private val dao: ShareDao) {
 
             try {
 
-                val data = StockApi.retrofitService.getShareAsync(symbol, date, API_KEY)
-                val shareData = data.parseToDatabaseModel()
+                val share = StockApi.retrofitService.getShareAsync(symbol, date, API_KEY).parseToDatabaseModel()
 
-                shareData.depotId = depotId
+                val detail = StockApi.retrofitService.getShareDetail(symbol, API_KEY)
 
-                dao.addShare(shareData)
+                share.depotId = depotId
+                share.country = detail.country
+                share.description = detail.description
+                share.employees = detail.employees
+                share.industry = detail.industry
+                share.logo = detail.logo
+                share.name = detail.name
+                share.sector = detail.sector
+
+                dao.addShare(share)
 
             } catch (e: Exception) {
                 Log.i("TEST", e.toString())
@@ -52,7 +52,7 @@ class ShareRepository(private val dao: ShareDao) {
         }
     }
 
-     fun getShares(depotId: Long): List<Share> {
+    fun getShares(depotId: Long): List<Share> {
         return dao.getSharesOfDepot(depotId)
     }
 }

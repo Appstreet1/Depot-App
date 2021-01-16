@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Depot App</string>
+    <string name="name">Name</string>
+    <string name="save">save</string>
 </resources>

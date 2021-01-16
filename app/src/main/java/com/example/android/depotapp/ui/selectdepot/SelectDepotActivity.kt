@@ -18,7 +18,6 @@ class SelectDepotActivity : AppCompatActivity() {
     private val viewModel by viewModel<SelectDepotViewModel>()
     private lateinit var listAdapter: DepotListAdapter
 
-    //TODO: don't repeat yourself
     companion object {
         fun start(context: Context) {
             val intent = Intent(context, SelectDepotActivity::class.java)
@@ -39,7 +38,6 @@ class SelectDepotActivity : AppCompatActivity() {
 
     private fun initOnClick() {
         depot_add_button.setOnClickListener {
-            finish()
             AddDepotActivity.start(this)
         }
     }

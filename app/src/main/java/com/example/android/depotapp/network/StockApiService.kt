@@ -24,10 +24,10 @@ interface StockApiService {
     ): ShareDTO
 
     @GET("v1/meta/symbols/{symbol}/company")
-    suspend fun getShareTitleBySymbol(
+    suspend fun getShareDetail(
         @Path("symbol") symbol: String,
         @Query("apiKey") apiKey: String
-    ): Title
+    ): ShareDetails
 }
 
 object StockApi {

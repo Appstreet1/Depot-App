@@ -8,6 +8,7 @@ import com.example.android.depotapp.R
 import com.example.android.depotapp.model.Depot
 import com.example.android.depotapp.model.Share
 import com.example.android.depotapp.ui.depotoverview.DepotOverviewViewModel
+import kotlinx.android.synthetic.main.activity_share_detail.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ShareDetailActivity : AppCompatActivity() {
@@ -31,6 +32,7 @@ class ShareDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_share_detail)
 
         getShareFromIntent()
+        renderUI()
     }
 
 
@@ -40,5 +42,14 @@ class ShareDetailActivity : AppCompatActivity() {
         if (share != null) {
             viewModel.setShare(share)
         }
+    }
+
+    private fun renderUI() {
+        viewModel.selectedShare.observe(this, { share ->
+            detail_country.text = share.country
+            detail_description.text = share.description
+            detail_industry.text = share.industry
+            detail_sector.text = share.sector
+        })
     }
 }

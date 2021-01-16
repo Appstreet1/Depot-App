@@ -6,35 +6,49 @@
     android:layout_height="match_parent"
     tools:context=".ui.detailShare.ShareDetailActivity">
 
-    <TextView
-        android:id="@+id/detail_industry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="detail_industry"
-        tools:layout_editor_absoluteX="109dp"
-        tools:layout_editor_absoluteY="83dp" />
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.19">
 
-    <TextView
-        android:id="@+id/detail_country"
-        android:layout_width="91dp"
-        android:layout_height="24dp"
-        android:text="detail_country"
-        tools:layout_editor_absoluteX="155dp"
-        tools:layout_editor_absoluteY="138dp" />
+        <TextView
+            android:id="@+id/detail_sector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="detail_sector"
+            android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/detail_sector"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="detail_sector"
-        tools:layout_editor_absoluteX="153dp"
-        tools:layout_editor_absoluteY="315dp" />
+        <TextView
+            android:id="@+id/detail_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="detail_country"
+            android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/detail_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="detail_description"
-        tools:layout_editor_absoluteX="208dp"
-        tools:layout_editor_absoluteY="220dp" />
+        <TextView
+            android:id="@+id/detail_industry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="detail_industry"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/detail_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="detail_description"
+            android:textSize="18sp" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

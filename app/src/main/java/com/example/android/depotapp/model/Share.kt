@@ -7,18 +7,30 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 class Share(
     val id: Long,
-    val symbol: String?,
-    val title: String?,
-    val date: String?,
-    var depotId: Long
+    val symbol: String,
+    val date: String,
+    var depotId: Long,
+    var logo : String,
+    val country: String,
+    val industry: String,
+    val sector: String,
+    val description: String,
+    val name: String,
+    val employees: String
 ) : Parcelable
 
 fun Share.parseToDatabasemodel(): ShareDatabaseItem {
     return ShareDatabaseItem(
         id = id,
-        title = title,
         date = date,
         symbol = symbol,
         depotId = depotId,
+        logo = logo,
+        country = country,
+        industry = industry,
+        sector = sector,
+        description = description,
+        name = name,
+        employees = employees
     )
 }
