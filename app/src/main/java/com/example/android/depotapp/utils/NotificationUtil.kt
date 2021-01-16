@@ -15,9 +15,8 @@ import com.example.android.depotapp.ui.detailShare.ShareDetailActivity
 private const val NOTIFICATION_CHANNEL_ID = BuildConfig.APPLICATION_ID + ".channel"
 
 fun sendNotification(context: Context, share: Share) {
-
-    val notificationManager =
-        context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    val notificationManager = context
+        .getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
     // We need to create a NotificationChannel associated with our CHANNEL_ID before sending a notification.
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
@@ -38,11 +37,10 @@ fun sendNotification(context: Context, share: Share) {
     val stackBuilder = TaskStackBuilder.create(context)
         .addParentStack(ShareDetailActivity::class.java)
         .addNextIntent(intent)
-
     val notificationPendingIntent = stackBuilder
         .getPendingIntent(getUniqueId(), PendingIntent.FLAG_UPDATE_CURRENT)
 
-    //    build the notification object with the data to be shown
+//    build the notification object with the data to be shown
     val notification = NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
         .setSmallIcon(R.mipmap.ic_launcher)
         .setContentTitle(share.name)
@@ -55,21 +53,6 @@ fun sendNotification(context: Context, share: Share) {
 }
 
 private fun getUniqueId() = ((System.currentTimeMillis() % 10000).toInt())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

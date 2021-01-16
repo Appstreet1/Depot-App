@@ -61,6 +61,7 @@ class AddShareActivity : AppCompatActivity() {
         viewModel.shareAdded.observe(this, { shareAdded ->
             if (shareAdded) {
                 finish()
+                viewModel.sendNotification()
             } else {
                 Toast.makeText(this, getString(R.string.someth_went_wrong), Toast.LENGTH_SHORT)
                     .show()

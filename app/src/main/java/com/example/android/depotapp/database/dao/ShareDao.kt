@@ -15,4 +15,5 @@ interface ShareDao {
 
     @Insert
     fun addShare(share: ShareDatabaseItem)
+
 }

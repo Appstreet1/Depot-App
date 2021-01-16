@@ -1,6 +1,7 @@
 package com.example.android.depotapp.ui.addshare
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.android.depotapp.model.Depot
 import com.example.android.depotapp.model.Share
@@ -12,17 +13,18 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class AddShareViewModel(private val shareRepo: ShareRepository, private val app: Application) :
-    AndroidViewModel(app) {
+    AndroidViewModel(app), DefaultLifecycleObserver {
 
     val shareAdded: LiveData<Boolean>
         get() = _shareAdded
 
-    val share: LiveData<Share>
-        get() = _share
-
     private val _selectedDepot = MutableLiveData<Depot>()
-    private val _share = MutableLiveData<Share>()
     private val _shareAdded = MutableLiveData<Boolean>()
+    private val _share = MutableLiveData<Share>()
+
+    init {
+        getLatestShare()
+    }
 
     fun setSelectedDepot(depot: Depot?) {
         if (depot != null) {
@@ -49,14 +51,25 @@ class AddShareViewModel(private val shareRepo: ShareRepository, private val app:
                 shareRepo.addShare(symbol, date, depotId)
                 _shareAdded.postValue(true)
 
-                sendNotification()
             } catch (e: Exception) {
                 _shareAdded.postValue(false)
             }
         }
     }
 
+    private fun getLatestShare() {
+        viewModelScope.launch(Dispatchers.IO) {
+
+            val shares = _selectedDepot.value?.id?.let { shareRepo.getShares(it) }
+            val latestShare = shares?.last()
+
+            _share.postValue(latestShare)
+        }
+    }
+
     fun sendNotification() {
-        sendNotification(app.applicationContext, _share.value!!)
+        _share.value?.let {
+            sendNotification(app.applicationContext, it)
+        }
     }
 }

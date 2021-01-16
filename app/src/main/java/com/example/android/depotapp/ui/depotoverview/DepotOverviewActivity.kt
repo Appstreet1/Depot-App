@@ -1,7 +1,11 @@
 package com.example.android.depotapp.ui.depotoverview
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -61,8 +65,8 @@ class DepotOverviewActivity : AppCompatActivity() {
             itemAnimator = DefaultItemAnimator()
             adapter = listAdapter
         }
-
     }
+
 
     companion object {
         fun start(context: Context, depot: Depot) {
