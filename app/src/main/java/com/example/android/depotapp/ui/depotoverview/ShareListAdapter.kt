@@ -11,23 +11,23 @@ import kotlinx.android.synthetic.main.share_list_item.view.*
 
 class ShareListAdapter(
     private val shares: ArrayList<Share> = ArrayList()
-) : RecyclerView.Adapter<ShareListAdapter.PurchaseViewHolder>() {
+) : RecyclerView.Adapter<ShareListAdapter.ShareViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PurchaseViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShareViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.share_list_item, parent, false)
-        return PurchaseViewHolder(view)
+        return ShareViewHolder(view)
     }
 
     override fun getItemCount(): Int {
         return shares.size
     }
 
-    override fun onBindViewHolder(holder: PurchaseViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ShareViewHolder, position: Int) {
         holder.update(shares[position])
     }
 
-    class PurchaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ShareViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun update(share: Share) = with(itemView) {
 
             list_share_date.text = share.date

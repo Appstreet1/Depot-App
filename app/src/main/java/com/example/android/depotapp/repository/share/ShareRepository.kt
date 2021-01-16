@@ -20,6 +20,7 @@ class ShareRepository(private val dao: ShareDao) {
             share.parseToDomainModel()
 
             NetworkResult.Success(share)
+
         } catch (e: Exception) {
 
             NetworkResult.Error(e)
