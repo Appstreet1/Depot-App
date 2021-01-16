@@ -1,18 +1,18 @@
 package com.example.android.depotapp.ui.addshare
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.app.Application
+import androidx.lifecycle.*
 import com.example.android.depotapp.model.Depot
 import com.example.android.depotapp.model.Share
 import com.example.android.depotapp.repository.share.ShareRepository
 import com.example.android.depotapp.utils.NetworkResult
+import com.example.android.depotapp.utils.sendNotification
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class AddShareViewModel(private val shareRepo: ShareRepository) : ViewModel() {
+class AddShareViewModel(private val shareRepo: ShareRepository, private val app: Application) :
+    AndroidViewModel(app) {
 
     val shareAdded: LiveData<Boolean>
         get() = _shareAdded
@@ -24,8 +24,10 @@ class AddShareViewModel(private val shareRepo: ShareRepository) : ViewModel() {
     private val _share = MutableLiveData<Share>()
     private val _shareAdded = MutableLiveData<Boolean>()
 
-    fun setSelectedDepot(depot: Depot) {
-        _selectedDepot.value = depot
+    fun setSelectedDepot(depot: Depot?) {
+        if (depot != null) {
+            _selectedDepot.value = depot
+        }
     }
 
     fun requestShare(symbol: String, date: String) {
@@ -45,12 +47,16 @@ class AddShareViewModel(private val shareRepo: ShareRepository) : ViewModel() {
 
                 val depotId = _selectedDepot.value!!.id
                 shareRepo.addShare(symbol, date, depotId)
-
                 _shareAdded.postValue(true)
 
+                sendNotification()
             } catch (e: Exception) {
                 _shareAdded.postValue(false)
             }
         }
+    }
+
+    fun sendNotification() {
+        sendNotification(app.applicationContext, _share.value!!)
     }
 }

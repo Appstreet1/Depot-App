@@ -25,6 +25,16 @@ class ShareDetailActivity : AppCompatActivity() {
             }
             context.startActivity(intent)
         }
+
+        private const val EXTRA_ReminderDataItem = "EXTRA_ReminderDataItem"
+        //        receive the reminder object after the user clicks on the notification
+        fun newIntent(context: Context, share: Share): Intent {
+
+            val intent = Intent(context, ShareDetailActivity::class.java)
+            intent.putExtra(EXTRA_ReminderDataItem, share)
+
+            return intent
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

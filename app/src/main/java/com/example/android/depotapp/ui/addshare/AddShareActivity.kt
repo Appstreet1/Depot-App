@@ -11,6 +11,7 @@ import com.example.android.depotapp.model.Share
 import com.example.android.depotapp.ui.depotoverview.DepotOverviewActivity
 import com.example.android.depotapp.ui.depotoverview.DepotOverviewViewModel
 import com.example.android.depotapp.utils.NetworkResult
+import com.example.android.depotapp.utils.sendNotification
 import kotlinx.android.synthetic.main.activity_add_share.*
 import kotlinx.android.synthetic.main.activity_depot_overview.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -43,9 +44,7 @@ class AddShareActivity : AppCompatActivity() {
 
     private fun getSelectedDepotFromIntent() {
         val depot: Depot? = intent.getParcelableExtra(this.getString(R.string.depot_arg))
-        if (depot != null) {
-            viewModel.setSelectedDepot(depot)
-        }
+        viewModel.setSelectedDepot(depot)
     }
 
     private fun initOnClick() {
@@ -63,7 +62,8 @@ class AddShareActivity : AppCompatActivity() {
             if (shareAdded) {
                 finish()
             } else {
-                Toast.makeText(this, getString(R.string.someth_went_wrong), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.someth_went_wrong), Toast.LENGTH_SHORT)
+                    .show()
             }
         })
     }

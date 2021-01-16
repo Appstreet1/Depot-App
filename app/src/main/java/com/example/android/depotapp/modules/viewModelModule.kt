@@ -13,7 +13,7 @@ val viewModelModule = module {
     viewModel { SelectDepotViewModel(repository = get()) }
     viewModel { AddDepotViewModel(repository = get()) }
     viewModel { DepotOverviewViewModel(shareRepo = get()) }
-    viewModel { AddShareViewModel(shareRepo = get()) }
+    viewModel { AddShareViewModel(shareRepo = get(), app = get()) }
     viewModel { ShareDetailViewModel(shareRepository = get()) }
 
 }

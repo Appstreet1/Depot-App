@@ -2,9 +2,7 @@
     <string name="app_name">Depot App</string>
     <string name="name">Name</string>
     <string name="save">save</string>
-    <string name="aapl">AAPL</string>
     <string name="e_g_aapl">e.g AAPL</string>
-    <string name="save">save</string>
     <string name="_2020_12_14">2020-12-14</string>
     <string name="plus">+</string>
     <string name="content">content</string>
@@ -18,7 +16,6 @@
     <string name="depot_data_base">depotsDatabase</string>
     <string name="depot_arg">depot_arg</string>
     <string name="someth_went_wrong">Something went wrong</string>
-    <string name="depot_arg">depot_arg</string>
     <string name="share_arg">share_arg</string>
     <string name="please_click_again">Please click again to exit</string>
 </resources>
