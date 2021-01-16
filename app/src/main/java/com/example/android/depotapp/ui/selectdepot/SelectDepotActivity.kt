@@ -66,7 +66,7 @@ class SelectDepotActivity : AppCompatActivity() {
         }
 
         this.doubleBackToExitPressedOnce = true
-        Toast.makeText(this, "Please click again to exit", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.please_click_again), Toast.LENGTH_SHORT).show()
 
         Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 1500)
     }

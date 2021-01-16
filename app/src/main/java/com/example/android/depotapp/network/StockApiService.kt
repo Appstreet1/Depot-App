@@ -1,6 +1,6 @@
 package com.example.android.depotapp.network
 
-import com.example.android.depotapp.utils.const.BASE_URL
+import com.example.android.depotapp.utils.Util.BASE_URL
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit

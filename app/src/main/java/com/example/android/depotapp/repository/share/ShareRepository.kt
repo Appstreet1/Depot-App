@@ -7,7 +7,7 @@ import com.example.android.depotapp.network.StockApi
 import com.example.android.depotapp.network.parseToDatabaseModel
 import com.example.android.depotapp.network.parseToDomainModel
 import com.example.android.depotapp.utils.NetworkResult
-import com.example.android.depotapp.utils.const.API_KEY
+import com.example.android.depotapp.utils.Util.API_KEY
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

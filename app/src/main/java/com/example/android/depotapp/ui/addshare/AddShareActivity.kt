@@ -23,7 +23,7 @@ class AddShareActivity : AppCompatActivity() {
             val intent = Intent(context, AddShareActivity::class.java)
 
             depot.run {
-                intent.putExtra("depot_arg", depot)
+                intent.putExtra(context.getString(R.string.depot_arg), depot)
             }
             context.startActivity(intent)
         }
@@ -42,7 +42,7 @@ class AddShareActivity : AppCompatActivity() {
 
 
     private fun getSelectedDepotFromIntent() {
-        val depot: Depot? = intent.getParcelableExtra("depot_arg")
+        val depot: Depot? = intent.getParcelableExtra(this.getString(R.string.depot_arg))
         if (depot != null) {
             viewModel.setSelectedDepot(depot)
         }
@@ -63,7 +63,7 @@ class AddShareActivity : AppCompatActivity() {
             if (shareAdded) {
                 finish()
             } else {
-                Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.someth_went_wrong), Toast.LENGTH_SHORT).show()
             }
         })
     }

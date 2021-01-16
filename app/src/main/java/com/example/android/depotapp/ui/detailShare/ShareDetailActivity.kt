@@ -21,7 +21,7 @@ class ShareDetailActivity : AppCompatActivity() {
             val intent = Intent(context, ShareDetailActivity::class.java)
 
             share.run {
-                intent.putExtra("share_arg", share)
+                intent.putExtra(context.getString(R.string.share_arg), share)
             }
             context.startActivity(intent)
         }
@@ -37,7 +37,7 @@ class ShareDetailActivity : AppCompatActivity() {
 
 
     private fun getShareFromIntent() {
-        val share: Share? = intent.getParcelableExtra("share_arg")
+        val share: Share? = intent.getParcelableExtra(this.getString(R.string.share_arg))
 
         if (share != null) {
             viewModel.setShare(share)

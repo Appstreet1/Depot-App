@@ -4,8 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
-import com.example.android.depotapp.database.converter.DateTypeConverter
+import com.example.android.depotapp.R
 import com.example.android.depotapp.database.dao.DepotDao
 import com.example.android.depotapp.database.dao.ShareDao
 import com.example.android.depotapp.database.entities.DepotDatabaseItem
@@ -16,7 +15,6 @@ import com.example.android.depotapp.database.entities.ShareDatabaseItem
     version = 1, exportSchema = false
 )
 
-@TypeConverters(DateTypeConverter::class)
 abstract class DepotDatabase : RoomDatabase() {
     abstract val depotDao: DepotDao
     abstract val shareDao: ShareDao
@@ -30,7 +28,7 @@ abstract class DepotDatabase : RoomDatabase() {
                     INSTANCE = Room.databaseBuilder(
                         context.applicationContext,
                         DepotDatabase::class.java,
-                        "depotsDatabase"
+                        context.getString(R.string.depot_data_base)
                     ).build()
                 }
             }

@@ -15,4 +15,10 @@
     <string name="textview">TextView</string>
     <string name="_2021_01_15">2021-01-15</string>
     <string name="aapl">AAPL</string>
+    <string name="depot_data_base">depotsDatabase</string>
+    <string name="depot_arg">depot_arg</string>
+    <string name="someth_went_wrong">Something went wrong</string>
+    <string name="depot_arg">depot_arg</string>
+    <string name="share_arg">share_arg</string>
+    <string name="please_click_again">Please click again to exit</string>
 </resources>

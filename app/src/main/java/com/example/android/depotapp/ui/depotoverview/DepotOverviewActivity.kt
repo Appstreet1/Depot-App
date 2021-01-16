@@ -33,7 +33,7 @@ class DepotOverviewActivity : AppCompatActivity() {
     }
 
     private fun getSelectedDepotFromIntent() {
-        val depot: Depot? = intent.getParcelableExtra("depot_arg")
+        val depot: Depot? = intent.getParcelableExtra(getString(R.string.depot_arg))
         if (depot != null) {
             viewModel.setSelectedDepot(depot)
         }
@@ -69,7 +69,7 @@ class DepotOverviewActivity : AppCompatActivity() {
             val intent = Intent(context, DepotOverviewActivity::class.java)
 
             depot.run {
-                intent.putExtra("depot_arg", depot)
+                intent.putExtra(context.getString(R.string.depot_arg), depot)
             }
             context.startActivity(intent)
         }
