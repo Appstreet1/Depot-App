@@ -1,27 +1,19 @@
 package com.example.android.depotapp.model
 
-import com.example.android.depotapp.database.entities.ShareDatabaseItem
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 class Share(
     val id: Long,
-    val symbol: String?,
-    val title: String?,
-    val price: Double?,
-    val date: String?,
-    val amount: Double?,
-    val totalValue: Double?,
-    var depotId: Long
-)
-
-fun Share.parseToDatabasemodel(): ShareDatabaseItem {
-    return ShareDatabaseItem(
-        id = id,
-        title = title,
-        date = date,
-        price = price,
-        symbol = symbol,
-        depotId = depotId,
-        amount = amount,
-        totalValue = totalValue
-    )
-}
+    val symbol: String,
+    val date: String,
+    var depotId: Long,
+    var logo : String,
+    val country: String,
+    val industry: String,
+    val sector: String,
+    val description: String,
+    val name: String,
+    val employees: String
+) : Parcelable

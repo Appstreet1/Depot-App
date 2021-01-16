@@ -1,10 +1,17 @@
 package com.example.android.depotapp.ui.depotoverview
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.depotapp.R
 import com.example.android.depotapp.model.Depot
 import com.example.android.depotapp.ui.addshare.AddShareActivity
@@ -14,18 +21,10 @@ import java.lang.Exception
 
 class DepotOverviewActivity : AppCompatActivity() {
 
-    companion object {
-        fun start(context: Context, depot: Depot) {
-            val intent = Intent(context, DepotOverviewActivity::class.java)
-
-            depot.run {
-                intent.putExtra("depot_arg", depot)
-            }
-            context.startActivity(intent)
-        }
-    }
 
     private val viewModel by viewModel<DepotOverviewViewModel>()
+    private lateinit var listAdapter: ShareListAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,14 +33,12 @@ class DepotOverviewActivity : AppCompatActivity() {
         getSelectedDepotFromIntent()
         initOnClick()
         observeShares()
-    }
-
-    override fun onResume() {
-        super.onResume()
+        initRecyclerView()
+        lifecycle.addObserver(viewModel)
     }
 
     private fun getSelectedDepotFromIntent() {
-        val depot: Depot? = intent.getParcelableExtra("depot_arg")
+        val depot: Depot? = intent.getParcelableExtra(getString(R.string.depot_arg))
         if (depot != null) {
             viewModel.setSelectedDepot(depot)
         }
@@ -54,15 +51,36 @@ class DepotOverviewActivity : AppCompatActivity() {
     }
 
     private fun observeShares() {
-        viewModel.getShares().observe(this, { shares ->
+        viewModel.shares.observe(this, { shares ->
 
-            val filter = shares.filter { it.depotId == viewModel.selectedDepot.value!!.id }
-
-            for (share in filter) {
-                Log.i("TEST", share.symbol.toString() + " - > symbol")
-
+            if (shares.isNotEmpty()) {
+                listAdapter.setData(shares)
+            } else {
+                Toast.makeText(this, "No shares added yet!", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun initRecyclerView() {
+        listAdapter = ShareListAdapter()
+
+        overview_recyclerview.apply {
+            layoutManager = LinearLayoutManager(this.context)
+            itemAnimator = DefaultItemAnimator()
+            adapter = listAdapter
+        }
+    }
+
+
+    companion object {
+        fun start(context: Context, depot: Depot) {
+            val intent = Intent(context, DepotOverviewActivity::class.java)
+
+            depot.run {
+                intent.putExtra(context.getString(R.string.depot_arg), depot)
+            }
+            context.startActivity(intent)
+        }
     }
 }
 

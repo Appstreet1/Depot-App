@@ -18,7 +18,6 @@ class SelectDepotActivity : AppCompatActivity() {
     private val viewModel by viewModel<SelectDepotViewModel>()
     private lateinit var listAdapter: DepotListAdapter
 
-    //TODO: don't repeat yourself
     companion object {
         fun start(context: Context) {
             val intent = Intent(context, SelectDepotActivity::class.java)
@@ -39,7 +38,6 @@ class SelectDepotActivity : AppCompatActivity() {
 
     private fun initOnClick() {
         depot_add_button.setOnClickListener {
-            finish()
             AddDepotActivity.start(this)
         }
     }
@@ -68,7 +66,7 @@ class SelectDepotActivity : AppCompatActivity() {
         }
 
         this.doubleBackToExitPressedOnce = true
-        Toast.makeText(this, "Please click again to exit", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.please_click_again), Toast.LENGTH_SHORT).show()
 
         Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 1500)
     }

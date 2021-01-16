@@ -12,9 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="108dp"
         android:ems="10"
-        android:hint="e.g AAPL"
+        android:hint="@string/e_g_aapl"
         android:inputType="text|textCapCharacters"
-        android:text="AAPL"
+        android:text="@string/aapl"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,26 +25,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="75dp"
-        android:text="save"
+        android:text="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/add_sh_amount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="e.g 10"
-        android:inputType="number|textPersonName|numberDecimal"
-        android:text="3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.262" />
 
     <EditText
         android:id="@+id/add_sh_date"
@@ -52,11 +37,11 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="date"
-        android:text="2020-12-14"
+        android:text="@string/_2020_12_14"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.38" />
+        app:layout_constraintVertical_bias="0.256" />
 </androidx.constraintlayout.widget.ConstraintLayout>

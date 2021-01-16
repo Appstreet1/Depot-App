@@ -1,52 +1,76 @@
 package com.example.android.depotapp.ui.addshare
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.app.Application
+import androidx.lifecycle.*
 import com.example.android.depotapp.model.Depot
 import com.example.android.depotapp.model.Share
 import com.example.android.depotapp.repository.share.ShareRepository
 import com.example.android.depotapp.utils.NetworkResult
+import com.example.android.depotapp.utils.sendNotification
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
-class AddShareViewModel(private val shareRepo: ShareRepository) : ViewModel() {
+class AddShareViewModel(private val shareRepo: ShareRepository, private val app: Application) :
+    AndroidViewModel(app), DefaultLifecycleObserver {
 
     val shareAdded: LiveData<Boolean>
         get() = _shareAdded
 
-    val share: LiveData<Share>
-        get() = _share
-
     private val _selectedDepot = MutableLiveData<Depot>()
-    private val _share = MutableLiveData<Share>()
     private val _shareAdded = MutableLiveData<Boolean>()
+    private val _share = MutableLiveData<Share>()
 
-    fun setSelectedDepot(depot: Depot) {
-        _selectedDepot.value = depot
+    init {
+        getLatestShare()
+    }
+
+    fun setSelectedDepot(depot: Depot?) {
+        if (depot != null) {
+            _selectedDepot.value = depot
+        }
     }
 
     fun requestShare(symbol: String, date: String) {
         viewModelScope.launch(Dispatchers.IO) {
 
-            when (shareRepo.requestShareBySymbolAndDate(symbol, date)) {
+            when (shareRepo.requestShare(symbol, date)) {
 
-                is NetworkResult.Success -> {
-                    val share = shareRepo.getShareBySymbolAndDate(symbol,date)
-                    addShare(share)
-                    _shareAdded.postValue(true)
-                }
+                is NetworkResult.Success -> addShare(symbol, date)
                 is NetworkResult.Error -> _shareAdded.postValue(false)
             }
         }
     }
 
-    private fun addShare(share: Share) {
+    private fun addShare(symbol: String, date: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            share.depotId = _selectedDepot.value!!.id
+            try {
 
-            shareRepo.addShare(share)
+                val depotId = _selectedDepot.value!!.id
+                shareRepo.addShare(symbol, date, depotId)
+                _shareAdded.postValue(true)
+
+            } catch (e: Exception) {
+                _shareAdded.postValue(false)
+            }
+        }
+    }
+
+    private fun getLatestShare() {
+        viewModelScope.launch(Dispatchers.IO) {
+
+            val shares = _selectedDepot.value?.id?.let { shareRepo.getShares(it) }
+
+            if (shares != null && shares.isNotEmpty()) {
+                val latestShare = shares.last()
+                _share.postValue(latestShare)
+            }
+        }
+    }
+
+    fun sendNotification() {
+        _share.value?.let {
+            sendNotification(app.applicationContext, it)
         }
     }
 }

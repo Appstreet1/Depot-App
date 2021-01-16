@@ -7,12 +7,15 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.android.depotapp.R
 import com.example.android.depotapp.model.Depot
+import com.example.android.depotapp.model.Share
 import com.example.android.depotapp.ui.depotoverview.DepotOverviewActivity
 import com.example.android.depotapp.ui.depotoverview.DepotOverviewViewModel
 import com.example.android.depotapp.utils.NetworkResult
+import com.example.android.depotapp.utils.sendNotification
 import kotlinx.android.synthetic.main.activity_add_share.*
 import kotlinx.android.synthetic.main.activity_depot_overview.*
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.util.*
 
 class AddShareActivity : AppCompatActivity() {
 
@@ -21,7 +24,7 @@ class AddShareActivity : AppCompatActivity() {
             val intent = Intent(context, AddShareActivity::class.java)
 
             depot.run {
-                intent.putExtra("depot_arg", depot)
+                intent.putExtra(context.getString(R.string.depot_arg), depot)
             }
             context.startActivity(intent)
         }
@@ -40,29 +43,28 @@ class AddShareActivity : AppCompatActivity() {
 
 
     private fun getSelectedDepotFromIntent() {
-        val depot: Depot? = intent.getParcelableExtra("depot_arg")
-        if (depot != null) {
-            viewModel.setSelectedDepot(depot)
-        }
+        val depot: Depot? = intent.getParcelableExtra(this.getString(R.string.depot_arg))
+        viewModel.setSelectedDepot(depot)
     }
 
     private fun initOnClick() {
         add_sh_add_btn.setOnClickListener {
-            val symbol = addsh_symbol_et.text.toString()
-            val amount = add_sh_amount.text.toString()
+
+            val symbol = addsh_symbol_et.text.toString().toUpperCase(Locale.ROOT)
             val date = add_sh_date.text.toString()
 
             viewModel.requestShare(symbol, date)
         }
     }
 
-
     private fun observeStatus() {
         viewModel.shareAdded.observe(this, { shareAdded ->
             if (shareAdded) {
                 finish()
+                viewModel.sendNotification()
             } else {
-                Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.someth_went_wrong), Toast.LENGTH_SHORT)
+                    .show()
             }
         })
     }

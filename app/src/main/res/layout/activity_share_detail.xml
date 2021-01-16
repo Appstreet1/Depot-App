@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.detailShare.ShareDetailActivity"
+    app:layoutDescription="@xml/activity_share_detail_scene">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_marginEnd="@dimen/margin_small"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/detail_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:text="detail_name"
+            android:textSize="@dimen/text_size_medium" />
+
+        <TextView
+            android:id="@+id/detail_employees"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:text="detail_employees"
+            android:textSize="@dimen/text_size_medium" />
+
+        <TextView
+            android:id="@+id/detail_sector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:text="@string/detail_sector"
+            android:textSize="@dimen/text_size_medium" />
+
+        <TextView
+            android:id="@+id/detail_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:text="@string/detail_country"
+            android:textSize="@dimen/text_size_medium" />
+
+        <TextView
+            android:id="@+id/detail_industry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:text="@string/detail_industry"
+            android:textSize="@dimen/text_size_medium" />
+
+        <TextView
+            android:id="@+id/detail_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:text="@string/detail_description"
+            android:textSize="@dimen/text_size_medium" />
+    </LinearLayout>
+
+</androidx.constraintlayout.motion.widget.MotionLayout>
