@@ -1,6 +1,4 @@
 
-Y
-)app/src/main/res/layout/activity_main.xml,7\6\76b07e40f24cce093536731477540f12e7da3cb6
 m
 =app/src/main/java/com/example/android/depotapp/model/Share.kt,8\f\8fa772ff04309a19a5ab36d8d00b3a048c0405d4
 ~

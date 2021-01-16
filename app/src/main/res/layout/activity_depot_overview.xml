@@ -8,7 +8,7 @@
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="387dp"
+        android:layout_width="0dp"
         android:layout_height="477dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
@@ -35,8 +35,8 @@
         android:layout_width="0dp"
         android:layout_height="76dp"
         android:gravity="center"
-        android:text="+"
-        android:textSize="36sp"
+        android:text="@string/plus"
+        android:textSize="@dimen/text_size_large"
         app:backgroundTint="#D7CCB7B7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
