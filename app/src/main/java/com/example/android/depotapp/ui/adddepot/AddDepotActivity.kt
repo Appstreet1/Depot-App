@@ -6,9 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.android.depotapp.R
 import com.example.android.depotapp.model.Depot
-import com.example.android.depotapp.ui.depotoverview.DepotOverviewActivity
 import com.example.android.depotapp.ui.selectdepot.SelectDepotActivity
-import com.example.android.depotapp.ui.selectdepot.SelectDepotViewModel
 import kotlinx.android.synthetic.main.activity_add_depot.*
 import org.koin.android.viewmodel.ext.android.viewModel
 

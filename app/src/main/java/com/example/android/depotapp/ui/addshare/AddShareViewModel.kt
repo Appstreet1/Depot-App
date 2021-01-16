@@ -1,7 +1,6 @@
 package com.example.android.depotapp.ui.addshare
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import com.example.android.depotapp.model.Depot
 import com.example.android.depotapp.model.Share

@@ -9,12 +9,6 @@ interface DepotDao {
     @Query("SELECT * FROM depots")
     fun getAllDepots(): LiveData<List<DepotDatabaseItem>>
 
-    @Update
-    suspend fun updateDepot(depot: DepotDatabaseItem)
-
     @Insert
     suspend fun addDepot(depot: DepotDatabaseItem)
-
-    @Delete
-    suspend fun deleteDepot(depot: DepotDatabaseItem)
 }

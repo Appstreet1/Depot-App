@@ -10,8 +10,6 @@ class AddDepotViewModel(private val repository: DepotRepository) : ViewModel() {
 
 
     fun insertDepot(depot: Depot) {
-
         viewModelScope.launch { repository.addDepot(depot) }
     }
-
 }

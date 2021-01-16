@@ -4,10 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android.depotapp.model.Share
-import com.example.android.depotapp.repository.share.ShareRepository
 
-class ShareDetailViewModel(private val shareRepository: ShareRepository) : ViewModel() {
-
+class ShareDetailViewModel : ViewModel() {
 
     val selectedShare: LiveData<Share>
         get() = _selectedShare

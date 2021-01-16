@@ -5,9 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.android.depotapp.R
-import com.example.android.depotapp.model.Depot
 import com.example.android.depotapp.model.Share
-import com.example.android.depotapp.ui.depotoverview.DepotOverviewViewModel
 import kotlinx.android.synthetic.main.activity_share_detail.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
