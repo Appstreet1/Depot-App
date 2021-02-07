@@ -52,16 +52,10 @@ x
 Happ/src/main/java/com/example/android/depotapp/database/DepotDatabase.kt,2\7\27c54df425ffa76cfecb37eda2312b9745c36c05
 @
 local.properties,0\7\0712df971a99ac4d2fccb8e0fb19f377f3374cca
-q
-Aapp/src/main/java/com/example/android/depotapp/utils/constants.kt,c\1\c126f76cb8d87858d6146db114e16ba099171d7e
-r
-Bapp/src/main/java/com/example/android/depotapp/utils/DataResult.kt,e\2\e268a99c5356310c0c57aa58f85638409268065a
 w
 Gapp/src/main/java/com/example/android/depotapp/database/dao/ShareDao.kt,7\2\726cc21f58a1e534795a64e50533b0c1ac2bc799
 u
 Eapp/src/main/java/com/example/android/depotapp/utils/NetworkResult.kt,b\2\b2528fb37ac8d1b57ce1ab34e3735b4b836e28c9
-o
-?app/src/main/java/com/example/android/depotapp/network/Title.kt,6\c\6c3b13efe3b613dc224a2e96e3e58a2ead8ba37a
 ‰
 Yapp/src/main/java/com/example/android/depotapp/ui/depotoverview/DepotOverviewViewModel.kt,c\d\cd4dbfe75af212f2a588c5174d2ece93434acf28
 ƒ
@@ -72,3 +66,9 @@ Fapp/src/main/java/com/example/android/depotapp/network/ShareDetails.kt,9\f\9f3
 Oapp/src/main/java/com/example/android/depotapp/ui/addshare/AddShareViewModel.kt,a\f\af3d99b770f87a1081ec2c87f1e85ef2725a1a22
 ~
 Napp/src/main/java/com/example/android/depotapp/ui/addshare/AddShareActivity.kt,b\7\b76933dbfc5f5c4a8dbc65c894ce0d3485ef3ed1
+x
+Happ/src/main/java/com/example/android/depotapp/utils/NotificationUtil.kt,8\d\8df968cef959a955afb8b47144f7cb326895371f
+„
+Tapp/src/main/java/com/example/android/depotapp/ui/detailShare/ShareDetailActivity.kt,8\9\8922ec764e19c9198d4fe32295dc5b499cc5a97e
+…
+Uapp/src/main/java/com/example/android/depotapp/ui/detailShare/ShareDetailViewModel.kt,3\b\3bb44c8bab932754e58bc0b44a39801cc78c1902
