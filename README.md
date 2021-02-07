@@ -1,8 +1,14 @@
 # Depot App
 
-Depot App is an app to get details of shares of your interest
+In this project the student will define their own project feature-set that meets criteria encompassing key areas of development skills covered within the Nanodegree:
 
-### What is it not? 
+* Application Architecture
+* UI and Layout
+* API Connectivity and Data Persistence
+* Hardware Integration
+* User-based Functionality
+
+## What is it not? 
 
 A UI/Material Design sample. The interface of the app was completely ignored to focus on architecture.
 
@@ -45,17 +51,17 @@ A UI/Material Design sample. The interface of the app was completely ignored to 
     implementation 'com.squareup.okhttp3:logging-interceptor:4.1.0'
 
 
-### Built With
+## Built With
 
-- Koin 
-- Live Data 
-- Coroutines 
-- MVVM 
-- MotionLayout
-- Retrofit
-- Moshi 
-- Room
-- Notification
+* Koin 
+* Live Data 
+* Coroutines 
+* MVVM 
+* MotionLayout
+* Retrofit
+* Moshi 
+* Room
+* Notification
 
 To build this project the polygon API is used, which can be found here: 
 https://polygon.io/
